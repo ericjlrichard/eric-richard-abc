@@ -1,0 +1,17 @@
+.test {
+  padding: 0.2rem;
+  display: flex;
+  background-color: #e2e2e2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+.test__button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 1px solid #676767;
+  border-radius: 5px;
+  background-color: #c6ebbf;
+}/*# sourceMappingURL=TestSuite.css.map */

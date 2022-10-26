@@ -1,0 +1,16 @@
+@use "../../styles/partials/media" as med;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/colors" as color;
+
+.header_menu {
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+
+  &__hamburger {
+    @include med.tablet {
+      display: none;
+    }
+  }
+}
