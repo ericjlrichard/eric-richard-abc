@@ -14,3 +14,8 @@ body {
 *:after {
     box-sizing: inherit;
 }
+
+a {
+  color: color.$abc-white;
+  text-decoration: none;
+}

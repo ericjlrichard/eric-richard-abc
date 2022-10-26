@@ -10,6 +10,12 @@ export default function Main()  {
     //onLoad()
 
   }, [])
+
+  //TD
+  if (!test) {
+    return ( <div>Main Loading!</div>)
+  }
+
   return !!test && (
     <div>
       

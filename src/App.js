@@ -3,13 +3,13 @@
 import './App.scss';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import MainHeader from './components/MainHeader/MainHeader';
-import Train from "./pages/Main/Main"
+import Train from "./pages/Train/Train"
 import Main from './pages/Main/Main';
 import Account from './pages/Account/Account';
 
+
 function App() {
   return (
-    
 
     <BrowserRouter>
       <MainHeader />
