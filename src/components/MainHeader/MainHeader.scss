@@ -4,13 +4,35 @@
 @use "../../styles/partials/colors" as color;
 
 .header_menu {
-  display: flex;
-  direction: row;
-  justify-content: space-between;
 
-  &__hamburger {
+  &__hamburger-icon {
+    width: 2rem;
+    height: 2rem;
+
     @include med.tablet {
       display: none;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    
+  }
+
+  &__bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+
+    display: none;
+
+    @include med.tablet {
+      display: flex;
     }
   }
 }

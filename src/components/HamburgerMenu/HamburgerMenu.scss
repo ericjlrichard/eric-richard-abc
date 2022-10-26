@@ -1,0 +1,24 @@
+@use "../../styles/partials/colors";
+
+.hamburger {
+
+  &__menu {
+    padding: .25rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    position: absolute;
+    top: 2rem;
+    left: calc(100vw - 4.5rem);
+    
+    background-color: colors.$abc-white;
+    border-color: colors.$abc-nuanced;
+    border-radius: 0px 0px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__link {
+    color: colors.$abc-black;
+  }
+}
