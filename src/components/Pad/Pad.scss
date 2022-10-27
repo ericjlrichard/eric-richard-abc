@@ -1,0 +1,108 @@
+@use "../../styles/partials/colors" as color;
+@use "../../styles/partials/anims" as anim;
+@use "../../styles/partials/variables" as var;
+
+.pad {
+  
+  background-color: color.$abc-light;
+  border: 2px solid color.$abc-brown;
+  border-radius: 10px;
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: color.$abc-black;
+
+  &--vertical {
+    width: 18vw;
+    height: 22vw;
+    border-top: 5px solid color.$abc-brown;
+    border-bottom: 5px solid color.$abc-brown;
+    border-right: 5px solid color.$abc-nuanced;
+    border-left: 5px solid color.$abc-nuanced;
+  }
+
+  &--horizontal {
+    width: 22vw;
+    height: 18vw;
+    border-top: 5px solid color.$abc-nuanced;
+    border-bottom: 5px solid color.$abc-nuanced;
+    border-left: 5px solid color.$abc-brown;
+    border-right: 5px solid color.$abc-brown;
+  }
+
+  &:active {
+    animation-name: fade-in;
+    animation-duration: 10s;
+  }
+}
+
+.pad1 {
+  top: 1vw;
+  left: calc(50% - 19vw)
+}
+
+.pad2 {
+  top: 1vw;
+  left: calc(50% + 1vw);
+}
+
+.pad3 {
+  top: 10vw;
+  left: 5vw;
+  
+  transform: perspective(100px) rotateY(50deg);
+}
+
+.pad4 {
+  top: 10vw;
+  left: calc(100% - 27vw);
+  transform: perspective(100px) rotateY(-50deg);
+}
+
+.pad5 {
+  top: 27vw;
+  left: calc(50% - 23vw);
+  transform: perspective(100px) rotateX(-50deg);
+}
+
+.pad6 {
+  top: 27vw;
+  left: calc(50% + 5vw);
+  transform: perspective(100px) rotateX(-50deg);
+}
+
+.pad7 {
+  top: 60vw;
+  left: calc(50% - 19vw)
+}
+
+.pad8 {
+  top: 60vw;
+  left: calc(50% + 1vw);
+}
+
+.pad9 {
+  top: 70vw;
+  left: calc(100% - 22vw);
+  transform: perspective(100px) rotateY(50deg);
+}
+
+.pad10 {
+  top: 70vw;
+  left: 0vw;
+  transform: perspective(100px) rotateY(-50deg);
+}
+
+.pad11 {
+  top: 90vw;
+  left: calc(50% + 6vw);
+  transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+}
+
+.pad12 {
+  top: 90vw;
+  left: calc(50% - 25vw);
+  transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+}

@@ -2,6 +2,8 @@ import "./HamburgerMenu.scss"
 import { Link, NavLink } from "react-router-dom";
 
 
+
+
 export default function HamburgerMenu({showHamburger}) {
 
   if (!showHamburger) {

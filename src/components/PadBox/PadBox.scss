@@ -1,0 +1,16 @@
+@use "../../styles/partials/colors" as color;
+
+.pad-box {
+  position: relative;
+  width: 90vw;
+  height: 120vw;
+  max-width: 500px;
+  border: 2px solid white;
+  //background-color: white;
+}
+
+.pads-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
