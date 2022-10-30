@@ -5,6 +5,8 @@ import { useState } from "react";
 import hamburgerIcon from "../../assets/icons/hamburger-menu.png"
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 
+import TestSuite from "../TestSuite/TestSuite"
+
 export default function MainHeader() {
   const [showHamburger, setShowHamburger] = useState(false);
 
@@ -13,7 +15,9 @@ export default function MainHeader() {
   }
 
   return (
+    
     <header className="header_menu">
+      <TestSuite />
       <HamburgerMenu showHamburger={showHamburger} />
       <nav className="header_menu__nav">
 

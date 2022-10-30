@@ -1,25 +1,48 @@
 import "./TestSuite.scss"
 import axios from "axios"
 
+import {checkRandomizer, getRandom, getSkewedRandom} from "../../js/math-utils.js";
+
 const API_URL = "http://localhost:8080"
 export default function TestSuite() {
 
   const handleRollBack = (event) => {
-    axios.get(API_URL + "/rollback")
-
-    .then(response => {
-      console.log("database reset")
-
-    })
-
-    .catch(error => {
-      console.log(error)
-    })
+    //roll back database to original seed values
 
   }
 
   const handleSelectChange =(event) => {
     window.open(event.target.value, "_blank").focus();
+  }
+  
+  const handleClickRandom =(event) => {
+    const testArray=["a","b","c","d","e","f","g","h","i","j"]
+    const numTests = 1000;
+    let resultsArray = []
+
+    console.log("constructing random array...")
+    //getting randoms
+    for (let i = 0; i<numTests; i++) {
+      resultsArray.push(getRandom(testArray))
+    }
+
+    for (let i = 0; i < numTests; i++) {
+      console.log("Raw results", resultsArray.join())
+    }
+    
+    console.log("Analyzing...")
+    
+    console.log("Analysis", checkRandomizer(testArray, resultsArray))
+
+    console.log("Analyzing skewed random...")
+
+    resultsArray = []
+
+    for(let i = 0; i < numTests; i++) {
+      resultsArray.push(getSkewedRandom(testArray, [1, 4], 50))
+    }
+
+    console.log("Analysis", checkRandomizer(testArray, resultsArray))
   }
 
   return (
@@ -27,14 +50,14 @@ export default function TestSuite() {
       Test Suite 3000 
       <button title="Rolls back all data to original files" className="test__button" onClick={handleRollBack}>Roll Back</button>
       <select title="check on axios calls" onChange={handleSelectChange}className="test__button" >
-        <option>inStock API</option>
-        <option value="http://localhost:8080/warehouse" >GET all warehouses</option>
-        <option value="http://localhost:8080/inventory" >GET all inventories</option>
-        <option value="http://localhost:8080/warehouse/2922c286-16cd-4d43-ab98-c79f698aeab0" >GET one warehouse - success</option>
-        <option value="http://localhost:8080/inventory/a193a6a7-42ab-4182-97dc-555ee85e7486" >GET one inventory - success</option>
-        <option value="http://localhost:8080/warehouse/1248980231" >GET one warehouse - fail</option>
-        <option value="http://localhost:8080/inventory/123448" >GET one inventory - fail</option>
+        <option>ABC API</option>
+        <option value="http://localhost:8080/boxers" >GET all boxers</option>
+        <option value="http://localhost:8080/combos" >GET all combos</option>
+        <option value="http://localhost:8080/actions" >GET all actions</option>
       </select>
+      <button className="test__button">Autofill</button>
+
+      <button className="test__button" onClick={handleClickRandom}>Random</button>
       
     </div>
     

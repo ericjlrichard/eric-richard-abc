@@ -17,6 +17,8 @@
   &--vertical {
     width: 18vw;
     height: 22vw;
+    max-width: 75px;
+    max-height: 90px;
     border-top: 5px solid color.$abc-brown;
     border-bottom: 5px solid color.$abc-brown;
     border-right: 5px solid color.$abc-nuanced;
@@ -26,15 +28,17 @@
   &--horizontal {
     width: 22vw;
     height: 18vw;
+    max-height: 75px;
+    max-width: 90px;
     border-top: 5px solid color.$abc-nuanced;
     border-bottom: 5px solid color.$abc-nuanced;
     border-left: 5px solid color.$abc-brown;
     border-right: 5px solid color.$abc-brown;
   }
 
-  &:active {
+  &--fadein {
     animation-name: fade-in;
-    animation-duration: 10s;
+    animation-duration: 5s;
   }
 }
 

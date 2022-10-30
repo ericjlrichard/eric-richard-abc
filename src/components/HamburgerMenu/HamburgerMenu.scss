@@ -4,12 +4,13 @@
 .hamburger {
 
   &__menu {
+    width: 6rem;
     padding: .25rem;
     padding-bottom: .5rem;
     padding-top: .5rem;
     position: absolute;
-    top: 2rem;
-    left: calc(100vw - 4.5rem);
+    top: 4rem;
+    left: calc(100vw - 6.5rem);
     
     background-color: colors.$abc-white;
     border-color: colors.$abc-nuanced;

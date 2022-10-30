@@ -1,9 +1,11 @@
 import "./Pad.scss";
 
-export default function Pad({number, orientation}) {
+
+export default function Pad({number, orientation, padState}) {
+  
 
   return (
 
-    <div className={`pad pad--${orientation} pad${number}`}>{number}</div>
+    <div id={`pad${number}`} className={`pad pad--${orientation} pad${number} pad--${padState}`}>{number}</div>
   )
 }

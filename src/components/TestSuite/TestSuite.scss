@@ -2,9 +2,7 @@
   padding: .2rem;
   display:flex;
   background-color: #e2e2e2;
-    position: fixed;
-    top:0;
-    left:0;
+  font-size: .7rem;
     width:100%;
     z-index:100;
 
@@ -13,8 +11,8 @@
       margin-right: 1rem;
       border: 1px solid #676767;
       border-radius: 5px;
-      background-color: #c6ebbf
-
+      background-color: #c6ebbf;
+      font-size: .7rem;
     }
 
     
