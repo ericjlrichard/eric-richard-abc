@@ -1,0 +1,82 @@
+@use "./colors" as color;
+
+@keyframes hamburger-slidein {
+  from {
+    top: -100% ;
+    left: 200%;
+    opacity: 0%;
+  }
+
+  to {
+    top: 2rem;
+    left: calc(100vw - 4.5rem);
+    opacity: 100%;
+  }
+}
+
+
+//Action Slider
+@keyframes slide-right {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50%;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 80vw;
+  }
+  to {
+    margin-left: 50%;
+  }
+}
+
+// || Action Slider
+
+
+// Pads
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes hit {
+
+  98% {
+    transform: rotate(4deg)
+  }
+  99% {
+    trasnform: rotate(-6deg)
+  }
+  100% {
+    background-color: red;
+    width: 90%;
+    height: 90%;
+  }
+  
+}
+
+// || Pads
+
+//animation that makes a component wiggle. Recommended: 3seconds, 3 times
+@keyframes wiggle {
+  30% {
+    transform: rotate(0deg);
+  }
+  2%, 10%, 18% {
+    transform: rotate(4deg);
+  }
+
+  6%, 14%, 22% {
+    transform: rotate(-4deg);
+  }
+
+}

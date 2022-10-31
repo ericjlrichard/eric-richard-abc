@@ -1,0 +1,29 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/anims" as anim;
+
+.hamburger {
+
+  &__menu {
+    width: 6rem;
+    padding: .25rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    position: absolute;
+    top: 4rem;
+    left: calc(100vw - 6.5rem);
+    
+    background-color: colors.$abc-white;
+    border-color: colors.$abc-nuanced;
+    border-radius: 0px 0px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    animation-duration: 1s;
+    animation-name: hamburger-slidein;
+  }
+
+  &__link {
+    color: colors.$abc-black;
+  }
+}

@@ -1,0 +1,53 @@
+@use "../../styles/partials/anims" as anim;
+
+@use "../../styles/partials/colors" as color;
+
+.box-action {
+  position: absolute;
+  background-color: color.$abc-red;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid color.$abc-light;
+
+  &__flex {
+    margin-top: 3px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__lead {
+    left:0px;
+
+    &--orthodox {
+      margin-left: 80vw;
+    }
+  }
+
+  &__rear {
+    margin-left: 80vw;
+
+    &--orthodox {
+      left: 0px;
+    }
+  }
+
+  &--slide-left {
+    animation-name: slide-left;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    display: block;
+  }
+  
+  &--slide-right {
+    animation-name: slide-right;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    display: block;
+  }
+
+  &--rest {
+    display:none;
+  }
+}

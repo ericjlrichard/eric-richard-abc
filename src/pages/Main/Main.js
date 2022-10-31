@@ -1,11 +1,27 @@
 import "../../styles/partials/_colors.scss"
 
-export default function Main()  {
+//import axios from "axios";
+import { useState, useEffect} from "react";
 
-  return (
+export default function Main()  {
+  const [test, setTest] = useState(undefined)
+
+  useEffect(() => {
+    //onLoad()
+
+  }, [])
+
+  //TD
+  if (!test) {
+    return ( <div>Main Loading!</div>)
+  }
+
+  return !!test && (
     <div>
       
-      Main page!
+      {test.map(item => (
+        <div>{item.combo_string}</div>
+      ))}
 
     </div>
   )

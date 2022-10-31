@@ -1,0 +1,197 @@
+@use "../../styles/partials/colors" as color;
+@use "../../styles/partials/anims" as anim;
+@use "../../styles/partials/variables" as var;
+
+.pad {
+  
+  background-color: color.$abc-light;
+  border: 2px solid color.$abc-brown;
+  border-radius: 10px;
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: color.$abc-black;
+
+  &--vertical {
+    width: 18vw;
+    height: 22vw;
+    max-width: 75px;
+    max-height: 90px;
+    border-top: 5px solid color.$abc-brown;
+    border-bottom: 5px solid color.$abc-brown;
+    border-right: 5px solid color.$abc-nuanced;
+    border-left: 5px solid color.$abc-nuanced;
+  }
+
+  &--horizontal {
+    width: 22vw;
+    height: 18vw;
+    max-height: 75px;
+    max-width: 90px;
+    border-top: 5px solid color.$abc-nuanced;
+    border-bottom: 5px solid color.$abc-nuanced;
+    border-left: 5px solid color.$abc-brown;
+    border-right: 5px solid color.$abc-brown;
+  }
+
+  &--fadein {
+    animation-name: fade-in;
+    animation-duration: 5s;
+  }
+
+  &--hit {
+    animation-name: hit;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+  }
+
+  &--rest {
+    opacity: 100%;
+  }
+}
+
+.pad1 {
+  top: 1vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(12deg);
+
+  &--orthodox {
+    top: 1vw;
+    left: calc(50% + 1vw);
+    transform: perspective(100px) rotateY(-12deg);
+  }
+}
+
+.pad2 {
+  top: 1vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-12deg);
+
+  &--orthodox {
+    top: 1vw;
+    left: calc(50% - 19vw);
+    transform: perspective(100px) rotateY(12deg);
+  }
+}
+
+.pad3 {
+  top: 10vw;
+  left: 5vw;
+  transform: perspective(100px) rotateY(50deg);
+
+  &--orthodox {
+    top: 10vw;
+    left: calc(100% - 27vw);
+    transform: perspective(100px) rotateY(-50deg);
+  }
+}
+
+.pad4 {
+  top: 10vw;
+  left: calc(100% - 27vw);
+  transform: perspective(100px) rotateY(-50deg);
+
+  &--orthodox {
+    top: 10vw;
+    left: 5vw;
+    transform: perspective(100px) rotateY(50deg);
+  }
+}
+
+.pad5 {
+  top: 27vw;
+  left: calc(50% - 23vw);
+  transform: perspective(100px) rotateX(-50deg);
+
+  &--orthodox {
+    top: 27vw;
+  left: calc(50% + 5vw);
+  transform: perspective(100px) rotateX(-50deg);
+  }
+}
+
+.pad6 {
+  top: 27vw;
+  left: calc(50% + 5vw);
+  transform: perspective(100px) rotateX(-50deg);
+
+  &--orthodox {
+    top: 27vw;
+  left: calc(50% - 23vw);
+  transform: perspective(100px) rotateX(-50deg);
+  }
+}
+
+.pad7 {
+  top: 60vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(15deg) rotateX(10deg);
+
+  &--orthodox {
+    top: 60vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-15deg) rotateX(10deg);
+  }
+}
+
+.pad8 {
+  top: 60vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-15deg) rotateX(10deg);
+
+  &--orthodox {
+    top: 60vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(15deg) rotateX(10deg);
+  }
+}
+
+.pad9 {
+  top: 70vw;
+  left: calc(100% - 22vw);
+  transform: perspective(100px) rotateY(50deg);
+
+  &--orthodox {
+    top: 70vw;
+    left: 0vw;
+    transform: perspective(100px) rotateY(-50deg);
+  }
+}
+
+.pad10 {
+  top: 70vw;
+  left: 0vw;
+  transform: perspective(100px) rotateY(-50deg);
+
+  &--orthodox {
+    top: 70vw;
+    left: calc(100% - 22vw);
+    transform: perspective(100px) rotateY(50deg);
+  }
+}
+
+.pad11 {
+  top: 90vw;
+  left: calc(50% + 7vw);
+  transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+
+  &--orthodox {
+    top: 90vw;
+    left: calc(50% - 25vw);
+    transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+  }
+}
+
+.pad12 {
+  top: 90vw;
+  left: calc(50% - 25vw);
+  transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+
+  &--orthodox {
+    top: 90vw;
+    left: calc(50% + 7vw);
+    transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+  }
+}
