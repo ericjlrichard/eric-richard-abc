@@ -7,20 +7,16 @@ import {changePadState, setPadAnimWithReset} from "../../js/time-anim-utils";
 
 import ActionSlider from "../ActionSlider/ActionSlider";
 
-const startingPadStates = [];
-for (let i = 0; i < 12; i++) {
-  startingPadStates.push("fadein")
-}
 const restingPadStates = [];
 for (let i = 0; i < 12; i++) {
   restingPadStates.push("rest")
 }
 
-let padStatesVar = [];
-let padStatesFunc = [];
+const padStatesFunc = [];
 
-export default function PadBox() {
-  const [padStates, setPadStates] = useState(restingPadStates)
+const round = [".",".",".",".",".",".","1","2","3",".",".",".","SR",".",".",".",".",".",".",".", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11"]
+
+export default function PadBox({userSettings}) {
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")
@@ -36,42 +32,45 @@ export default function PadBox() {
   const [padState12, setPadState12] = useState ("fadein")
 
   useEffect(() => {
-    //lining up pad numbers with their index
-    padStatesVar = []
-    padStatesFunc = []
 
-    padStatesVar.push(padState1, padState2, padState3, padState4, padState5, padState6, padState7, padState8, padState9, padState10, padState11, padState12)
+    console.log(userSettings.stance)
 
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
 
-    setPadStates(startingPadStates)
+    let time = 0;
 
-    setTimeout(() => {
-      setPadStates(restingPadStates)
-    }, 5000)
+    //set action map for pad hits
+    round.forEach(action => {
+      time += 250
+      if (action === ".") {
+        //nothing
+      } else {
+        if (!isNaN(action[0])) {
+          setPadAnimWithReset(padStatesFunc[action - 1], "hit", time, "rest")
+        }
+        
+      }
+    } )
 
-    setPadAnimWithReset(padStatesFunc[1], "hit", 5000, "rest")
-    setPadAnimWithReset(padStatesFunc[2], "hit", 5500, "rest")
-    setPadAnimWithReset(padStatesFunc[3], "hit", 6000, "rest")
   }, [])
   
 
   return (
     <div className="pad-box">
-      <Pad orientation="vertical" number="1" padState={padState1} />
-      <Pad orientation="vertical" number="2" padState={padState2}/>
-      <Pad orientation="horizontal" number="3" padState={padState3}/>
-      <Pad orientation="horizontal" number="4" padState={padState4}/>
-      <Pad orientation="vertical" number="5" padState={padStates[4]}/>
-      <Pad orientation="vertical" number="6" padState={padStates[5]}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="1" padState={padState1} />
+      <Pad userSettings={userSettings} orientation="vertical" number="2" padState={padState2}/>
+      <Pad userSettings={userSettings} orientation="horizontal" number="3" padState={padState3}/>
+      <Pad userSettings={userSettings} orientation="horizontal" number="4" padState={padState4}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="5" padState={padState5}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="6" padState={padState6}/>
 
-      <ActionSlider />
-      <Pad orientation="vertical" number="7" padState={padStates[6]}/>
-      <Pad orientation="vertical" number="8" padState={padStates[7]}/>
-      <Pad orientation="horizontal" number="9" padState={padStates[8]}/>
-      <Pad orientation="horizontal" number="10" padState={padStates[9]}/>
-      <Pad orientation="vertical" number="11" padState={padStates[10]}/>
-      <Pad orientation="vertical" number="12" padState={padStates[11]}/>
+      <ActionSlider round={round} userSettings={userSettings}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="7" padState={padState7}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="8" padState={padState8}/>
+      <Pad userSettings={userSettings} orientation="horizontal" number="9" padState={padState9}/>
+      <Pad userSettings={userSettings} orientation="horizontal" number="10" padState={padState10}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="11" padState={padState11}/>
+      <Pad userSettings={userSettings} orientation="vertical" number="12" padState={padState12}/>
 
     </div>
   )
