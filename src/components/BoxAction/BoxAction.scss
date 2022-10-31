@@ -33,32 +33,18 @@
     }
   }
 
-  &--slide-lead {
+  &--slide-left {
     animation-name: slide-left;
     animation-duration: 1s;
     animation-timing-function: linear;
     display: block;
-
-    &--orthodox {
-      animation-name: slide-right;
-      animation-duration: 1s;
-      animation-timing-function: linear;
-      display: block;
-    }
   }
   
-  &--slide-rear {
+  &--slide-right {
     animation-name: slide-right;
     animation-duration: 1s;
     animation-timing-function: linear;
     display: block;
-
-    &--orthodox {
-      animation-name: slide-left;
-      animation-duration: 1s;
-      animation-timing-function: linear;
-      display: block;
-    }
   }
 
   &--rest {
