@@ -40,6 +40,12 @@
     animation-name: fade-in;
     animation-duration: 5s;
   }
+
+  &--hit {
+    animation-name: hit;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+  }
 }
 
 .pad1 {

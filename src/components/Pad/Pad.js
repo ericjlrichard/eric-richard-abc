@@ -1,8 +1,7 @@
+import { useEffect } from "react";
 import "./Pad.scss";
 
-
 export default function Pad({number, orientation, padState}) {
-  
 
   return (
 

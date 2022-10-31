@@ -1,4 +1,4 @@
-
+@use "./colors" as color;
 
 @keyframes hamburger-slidein {
   from {
@@ -14,15 +14,50 @@
   }
 }
 
-@keyframes fade-in {
+
+//Action Slider
+@keyframes slide-right {
   from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50%;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 80vw;
+  }
+  to {
+    margin-left: 50%;
+  }
+}
+
+// || Action Slider
+
+
+// Pads
+@keyframes fade-in {
+  0% {
     opacity: 0%;
   }
-
-  to {
+  
+  100% {
     opacity: 100%;
   }
 }
+
+@keyframes hit {
+
+  100% {
+    background-color: red;
+    width: 90%;
+    height: 90%;
+  }
+}
+
+// || Pads
 
 //animation that makes a component wiggle. Recommended: 3seconds, 3 times
 @keyframes wiggle {

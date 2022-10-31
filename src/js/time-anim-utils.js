@@ -24,3 +24,25 @@ export function changePadState(padArray, state, someArray) {
 
     return padArray;
 }
+
+//starts anim with text "action" and "setAnimState" function after "delay", resets to "restClass", after "delayRest"
+export function setActionAnimWithReset(setAnimState, action, animClass, delay, restClass, delayRest ) {
+  setTimeout(() => {
+    setAnimState({action: action, anim:animClass})
+  }, delay)
+
+  setTimeout(() => {
+    setAnimState({action: action, anim: restClass})
+  }, delayRest)
+}
+
+export function setPadAnimWithReset (setAnimState, animClass, delay, restClass) {
+  setTimeout(() => {
+    setAnimState(animClass)
+  }, delay+1000)
+
+  setTimeout(() => {
+    setAnimState(restClass)
+  }, delay+1200)
+
+}

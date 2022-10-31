@@ -1,0 +1,31 @@
+@use "../../styles/partials/anims" as anim;
+
+.box-action {
+  position: absolute;
+
+  &__left {
+    left:0px;
+  }
+
+  &__right {
+    margin-left: 80vw;
+  }
+
+  &--slide-left {
+    animation-name: slide-left;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    display: block;
+  }
+  
+  &--slide-right {
+    animation-name: slide-right;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    display: block;
+  }
+
+  &--rest {
+    display:none;
+  }
+}
