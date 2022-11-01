@@ -1,5 +1,4 @@
 .test {
-  padding: .2rem;
   display:flex;
   background-color: #e2e2e2;
   font-size: .7rem;
@@ -13,7 +12,9 @@
       border-radius: 5px;
       background-color: #c6ebbf;
       font-size: .7rem;
+      height: 2rem;
     }
 
+  max-width: 100%;
     
 }
