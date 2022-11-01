@@ -18,9 +18,13 @@ export default function Main()  {
   }
 
   return !!test && (
-    <div className="main__hero">
-      tru
-
+    <div className="main">
+      
+      <div className="main__hero">
+      </div>
+      <div className="main__prompt">
+        Train Now
+      </div>
     </div>
   )
 }
