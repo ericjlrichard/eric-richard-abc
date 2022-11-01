@@ -6,6 +6,8 @@ import {changePadState, setPadAnimWithReset} from "../../js/time-anim-utils";
 
 import { createRandomCombo, getActionsOfCombinedType, createRandomRound } from "../../js/combo-utils";
 
+import { playSound, setSoundTimer } from "../../js/sound-utils";
+
 
 import ActionSlider from "../ActionSlider/ActionSlider";
 
@@ -43,7 +45,6 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
   useEffect(() => {
     
     const nextRound = createRandomRound(combosArray, "regular")
-    console.table(nextRound);
 
     setRound(nextRound)
 
@@ -69,6 +70,7 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
             padNumber = action[0];
           }
           setPadAnimWithReset(padStatesFunc[padNumber - 1], "hit", time, "rest")
+          setSoundTimer(time)
         }
         
       }
