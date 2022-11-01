@@ -58,7 +58,7 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
           //A normal combo sometimes has defense in it but I'd say about 90% offense. Could eventually be slideable.
           returnCombo.push(getSkewedFromArrays(getActionsOfCombinedType(actionsArray, ["rear", "defense"]), getActionsOfAnyType(actionsArray, ["lead", "offense"]), 98))
         } else {
-          returnCombo.push(getSkewedFromArrays(getActionsOfAnyType(actionsArray, ["lead", "defense"]), getActionsOfAnyType(actionsArray, ["rear", "offense"]), 99))
+          returnCombo.push(getSkewedFromArrays(getActionsOfCombinedType(actionsArray, ["lead", "defense"]), getActionsOfAnyType(actionsArray, ["rear", "offense"]), 99))
         }
 
       } else {

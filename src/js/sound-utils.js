@@ -1,8 +1,8 @@
 
-
+//returns the timeout id
 exports.setSoundTimer = (ms, action) => {
-  console.log(action)
-  setTimeout(() => {
+
+  return setTimeout(() => {
 
     let soundToUse = action
 
