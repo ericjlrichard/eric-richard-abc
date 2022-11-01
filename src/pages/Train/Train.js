@@ -38,7 +38,7 @@ export default function Train() {
     userSettings.stance = sessionStorage.getItem("abc_stance")
   }
 
-  userSettings.stance = "orthodox";
+  //userSettings.stance = "orthodox";
 
   return !!actionsArray && !!combosArray && (
     <div className="train-page">

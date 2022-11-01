@@ -21,16 +21,21 @@ export default function Main()  {
   }
 
   return !!test && (
-    <Link to="/train">
-      <div className="main">
+    <>
+      <Link to="/train">
+        <div className="main">
+          
+          <div className="main__hero">
+          </div>
+          <div className="main__prompt">
+            Train Now!
+          </div>
+        </div>
+      </Link>
         
-        <div className="main__hero">
-        </div>
-        <div className="main__prompt">
-          Train Now!
-        </div>
-      </div>
       <About />
-    </Link>
+
+    </>
+    
   )
 }
