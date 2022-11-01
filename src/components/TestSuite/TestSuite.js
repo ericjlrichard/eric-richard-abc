@@ -56,7 +56,7 @@ export default function TestSuite() {
 
   return (
     <div className="test">
-      Test Suite 3000 
+      Tests
       <button title="Rolls back all data to original files" className="test__button" onClick={handleRollBack}>Roll Back</button>
       <select title="check on axios calls" onChange={handleSelectChange}className="test__button" >
         <option>ABC API</option>

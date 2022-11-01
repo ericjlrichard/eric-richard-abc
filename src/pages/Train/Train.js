@@ -2,18 +2,14 @@ import PadBox from "../../components/PadBox/PadBox"
 
 import "./Train.scss"
 
-import { playSound } from "../../js/sound-utils";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Train() {
   const [actionsArray, setActionsArray] = useState(undefined)
   const [combosArray, setCombosArray] = useState(undefined)
-  // let userSettings = {
-  //   stance: "orthodox"
-  // };
 
+  //onLoad
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/actionswithtypes`)
     .then(res => {
@@ -42,9 +38,10 @@ export default function Train() {
     userSettings.stance = sessionStorage.getItem("abc_stance")
   }
 
+  userSettings.stance = "orthodox";
+
   return !!actionsArray && !!combosArray && (
     <div className="train-page">
-      <h1>Training Page</h1>
 
       <div className="pads-container">
         <PadBox combosArray={combosArray} actionsArray={actionsArray} userSettings={userSettings} />

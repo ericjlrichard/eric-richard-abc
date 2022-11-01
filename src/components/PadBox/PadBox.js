@@ -2,11 +2,11 @@ import "./PadBox.scss"
 
 import Pad from "../Pad/Pad"
 import { useState, useEffect } from "react";
-import {changePadState, setPadAnimWithReset} from "../../js/time-anim-utils";
+import {setPadAnimWithReset} from "../../js/time-anim-utils";
 
-import { createRandomCombo, getActionsOfCombinedType, createRandomRound } from "../../js/combo-utils";
+import { createRandomRound } from "../../js/combo-utils";
 
-import { playSound, setSoundTimer } from "../../js/sound-utils";
+import { setSoundTimer } from "../../js/sound-utils";
 
 
 import ActionSlider from "../ActionSlider/ActionSlider";
@@ -17,13 +17,6 @@ for (let i = 0; i < 12; i++) {
 }
 
 const padStatesFunc = [];
-
-//let round = [".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11", ".",".",".",".",".",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11"]
-
-//let round = [".", ".", ".", "1", "2", "3",".", ".",".", ".", ".", "4", "2o", "5",".", ".", "6", "8", "9", "3",".", ".", ".", "10", "11", "12",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3", "."]
-
-const roundBase = [".", ".", ".", ".", "2", "3",".", "."]
-
 
 export default function PadBox({userSettings, actionsArray, combosArray}) {
 
@@ -42,27 +35,44 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
 
   const [round, setRound] = useState(undefined)
 
+  const [soundTimeouts, setSoundTimeouts] = useState([])
+
+  
+  //onload
   useEffect(() => {
     
-    const nextRound = createRandomRound(combosArray, "regular")
-
-    setRound(nextRound)
-
-    //setRound(roundBase.concat(createRandomCombo(actionsArray, 2, 5).map(item => item.code)));
+    setRound(createRandomRound(combosArray, "regular"))
     
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
+
+    console.log("bye")
+
+  }, [])
+
+   //onUnLoad
+   useEffect(() => () => {
+
+    //clears out the sounds
+    if(soundTimeouts) {
+      soundTimeouts.forEach(sound => {
+        clearTimeout(sound)
+      })
+      setSoundTimeouts([])
+    }
+    
 
   }, [])
 
   //round on Change
   useEffect(() => {
     let time = 0;
+    const soundTimeoutArray = soundTimeouts ? soundTimeouts : [];
 
     //set action map for pad hits
     round?.forEach(action => {
       time += 250
       if (action === ".") {
-        //nothing
+        //just a pause for now
       } else {
         if (!isNaN(action[0])) {
           let padNumber = action
@@ -70,15 +80,18 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
             padNumber = action[0];
           }
           setPadAnimWithReset(padStatesFunc[padNumber - 1], "hit", time, "rest")
-          setSoundTimer(time, padNumber)
+          soundTimeouts.push(setSoundTimer(time, padNumber))
         }
         
       }
     } )
+
+    setSoundTimeouts(soundTimeouts)
+
   }, [round])
   
 
-  return !!round && (
+  return !!round && !!soundTimeouts && (
     <div className="pad-box">
       <Pad userSettings={userSettings} orientation="vertical" number="1" padState={padState1} />
       <Pad userSettings={userSettings} orientation="vertical" number="2" padState={padState2}/>

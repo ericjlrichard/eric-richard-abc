@@ -1,0 +1,13 @@
+@use "../../styles/partials/_colors.scss";
+
+.main {
+
+  &__hero {
+    background-image: url("http://localhost:8080/images/mobile_splash.png");
+    background-position:top;
+    background-size: cover;
+    opacity: 40%;
+    width: 100%;
+    height: 150px;
+  }
+}

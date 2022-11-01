@@ -1,4 +1,5 @@
-import "../../styles/partials/_colors.scss"
+
+import "./Main.scss"
 
 //import axios from "axios";
 import { useState, useEffect} from "react";
@@ -8,7 +9,7 @@ export default function Main()  {
 
   useEffect(() => {
     //onLoad()
-
+    setTest(true)
   }, [])
 
   //TD
@@ -17,11 +18,8 @@ export default function Main()  {
   }
 
   return !!test && (
-    <div>
-      
-      {test.map(item => (
-        <div>{item.combo_string}</div>
-      ))}
+    <div className="main__hero">
+      tru
 
     </div>
   )
