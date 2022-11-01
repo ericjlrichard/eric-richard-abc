@@ -15,7 +15,12 @@
     }
   }
 
+  &__logo-img {
+    height: 3rem;
+  }
+
   &__nav {
+    padding: .2rem;
     display: flex;
     direction: row;
     justify-content: space-between;

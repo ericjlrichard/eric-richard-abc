@@ -18,10 +18,10 @@ export default function MainHeader() {
     
     <header className="header_menu">
       <TestSuite />
-      <HamburgerMenu showHamburger={showHamburger} />
+      <HamburgerMenu setShowHamburger={setShowHamburger} handleClickHamburger={handleClickHamburger} showHamburger={showHamburger} />
       <nav className="header_menu__nav">
 
-        <Link to="/main"><div className="header_menu__logo">Logo</div></Link>
+        <Link to="/main"><div className="header_menu__logo"><img className="header_menu__logo-img" src={require("../../assets/logos/logo.png")} alt="ABC Logo"></img></div></Link>
         <div className="header_menu__bar">
           <NavLink to="/train"><div className="header_menu__link">Train</div></NavLink>
           <NavLink to="/account"><div className="header_menu__link">Account</div></NavLink>
