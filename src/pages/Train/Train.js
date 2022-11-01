@@ -2,6 +2,8 @@ import PadBox from "../../components/PadBox/PadBox"
 
 import "./Train.scss"
 
+import { playSound } from "../../js/sound-utils";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -29,12 +31,10 @@ export default function Train() {
     .catch(err => {
       console.log(err)
     })
+
   }, [])
 
   let userSettings = {};
-
-  // sessionStorage.setItem("abc_stance", userSettings.stance)
-  // console.log("session storage", sessionStorage.getItem("abc_stance"))
 
   if(!sessionStorage.getItem("abc_stance")) {
     sessionStorage.setItem("abc_stance", userSettings.stance)
