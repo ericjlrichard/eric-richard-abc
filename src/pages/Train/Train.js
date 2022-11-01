@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default function Train() {
   const [actionsArray, setActionsArray] = useState(undefined)
+  const [combosArray, setCombosArray] = useState(undefined)
   // let userSettings = {
   //   stance: "orthodox"
   // };
@@ -15,6 +16,14 @@ export default function Train() {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/actionswithtypes`)
     .then(res => {
       setActionsArray(res.data)
+
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/combos`)
+      .then(res => {
+        setCombosArray(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     })
     .catch(err => {
@@ -33,12 +42,12 @@ export default function Train() {
     userSettings.stance = sessionStorage.getItem("abc_stance")
   }
 
-  return !!actionsArray && (
+  return !!actionsArray && !!combosArray && (
     <div className="train-page">
       <h1>Training Page</h1>
 
       <div className="pads-container">
-        <PadBox actionsArray={actionsArray} userSettings={userSettings} />
+        <PadBox combosArray={combosArray} actionsArray={actionsArray} userSettings={userSettings} />
       </div>
 
     </div>

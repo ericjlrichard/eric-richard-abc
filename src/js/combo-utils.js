@@ -73,19 +73,78 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
 
 //type: warmup, regular, cooldown, punchout (say, 1-2-1-2-1-2-3-4 in rapid succession)
 //duration: in seconds, defaulted in .env to 180 = 3 minutes
-export function createRandomRound(combosArray, type, duration = defaultRoundDuration ) {
+export function createRandomRound(combosArray, type = "regular", duration = defaultRoundDuration ) {
   //we have a limit of 4 actions per second. For a three minutes round, so should be a maximum of 720 actions, including pauses
   const actionLimit = duration * 4;
+  const returnRound = []
+  let combosArrayFiltered = []
+  let combosUsed = []
+
+  switch(type) {
+    case "warmup":
+      //warmup code: filter combos to 1, 2, 3, slips
+      break;
+    case "cooldown":
+      //cooldown code: filter combos to warmup settings for now
+      break;
+    case "punchout":
+      //hmm. Will probably construct and return the round right here.
+      break;
+    default:
+      combosArrayFiltered = combosArray;
+  }
+
+  //We're gonna start with a 2 seconds padding.
+  padSeconds(returnRound, 2)
+
+  while(returnRound.length < actionLimit) {
+    const nextCombo = getRandom(combosArrayFiltered);
+
+    combosUsed.push(nextCombo)
+
+    const nextComboArray = nextCombo.combo_string.split(",");
+
+    returnRound.push(...padComboIncrements(nextComboArray, 4))
+    padSeconds(returnRound, 4)
+    returnRound.push(...padComboIncrements(nextComboArray, 4))
+    padSeconds(returnRound, 4)
+    returnRound.push(...padComboIncrements(nextComboArray, 2))
+    padSeconds(returnRound, 4)
+    returnRound.push(...padComboIncrements(nextComboArray, 2))
+    padSeconds(returnRound, 4)
+    returnRound.push(...padComboIncrements(nextComboArray, 1))
+    padSeconds(returnRound, 4)
+    returnRound.push(...nextComboArray)
+    padSeconds(returnRound, 4)
+    returnRound.push(...nextComboArray)
+ 
+    padSeconds(returnRound, 4)
+  }
+  
+  return returnRound;
 }
 
-
+//adds pauses of "seconds" seconds. Doesn't take fractions into account.
+function padSeconds(combo, seconds) {
+  for(let i = 0; i < seconds; i++) {
+    combo.push(".", ".", ".", ".")
+  }
+}
 
 //pad combo with simple, automatic increment number of 250ms
-function padComboIncrements(increment) {
+function padComboIncrements(comboArray, increment) {
+  const returnArray = []
+  comboArray.forEach(item => {
+    returnArray.push(item)
+    for(let i=0; i<increment; i++) {
+      returnArray.push(".")
+    }
+  })
 
+  return returnArray;
 }
 
 //will pad the combo according to speed (slow, medium, fast, extreme), also taking into account that slips and pulls are faster than ducks, for example.
-function intelligentPadCombo(speed) {
+function smartPadCombo(speed) {
 
 }

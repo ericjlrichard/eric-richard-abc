@@ -4,11 +4,15 @@
 
 .box-action {
   position: absolute;
-  background-color: color.$abc-red;
+  background-color: color.$abc-redpad;
   width: 30px;
   height: 30px;
   border-radius: 50px;
   border: 1px solid color.$abc-light;
+
+  &__defense {
+    background-color: color.$abc-bluepad;
+  }
 
   &__flex {
     margin-top: 3px;
