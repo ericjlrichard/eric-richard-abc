@@ -4,23 +4,28 @@
 .hamburger {
 
   &__menu {
+    //just to get over that hero div
+    z-index: 2;
+
     width: 6rem;
     padding: .25rem;
-    padding-bottom: .5rem;
-    padding-top: .5rem;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-right: 0.7rem;
     position: absolute;
-    top: 4rem;
-    left: calc(100vw - 6.5rem);
+    top: 4.5rem;
+    left: calc(100vw - 7.5rem);
     
-    background-color: colors.$abc-white;
+    background-color: colors.$abc-light;
+    color: colors.$abc-light;
     border-color: colors.$abc-nuanced;
-    border-radius: 0px 0px 0px 15px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 
     animation-duration: 1s;
-    animation-name: hamburger-slidein;
+    animation-name: hamburger-appear;
   }
 
   &__link {

@@ -16,5 +16,11 @@
     }
 
   max-width: 100%;
+
+  &--hide {
+    background-color: black;
+    font-size: .7rem;
+    color: #676767;
+  }
     
 }

@@ -2,9 +2,12 @@ import "./TestSuite.scss"
 import axios from "axios"
 
 import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom} from "../../js/math-utils.js";
+import { useState } from "react";
 
 const API_URL = "http://localhost:8080"
 export default function TestSuite() {
+  //start with the test suite off
+  const [showToggle, setShowToggle] = useState(false)
 
   const handleRollBack = (event) => {
     //roll back database to original seed values
@@ -54,9 +57,18 @@ export default function TestSuite() {
     console.log("Random range - analysis", checkRandomizer([2, 3, 4, 5, 6, 7], resultsArray))
   }
 
+  const handleClickShow = (event) => {
+    setShowToggle(!showToggle)
+  }
+
+  if (!showToggle) {
+    return (
+      <div className="test--hide" onClick={handleClickShow}>Show</div>
+    )
+  }
   return (
     <div className="test">
-      Tests
+      <div onClick={handleClickShow}>Hide</div>
       <button title="Rolls back all data to original files" className="test__button" onClick={handleRollBack}>Roll Back</button>
       <select title="check on axios calls" onChange={handleSelectChange}className="test__button" >
         <option>ABC API</option>
