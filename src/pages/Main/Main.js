@@ -8,19 +8,19 @@ import { Link } from "react-router-dom";
 import About from "../About/About";
 
 export default function Main()  {
-  const [test, setTest] = useState(undefined)
+  const [loadComplete, setLoadComplete] = useState(false)
 
   useEffect(() => {
     //onLoad()
-    setTest(true)
+    setLoadComplete(true)
   }, [])
 
   //TD
-  if (!test) {
+  if (!loadComplete) {
     return ( <div>Main Loading!</div>)
   }
 
-  return !!test && (
+  return !!loadComplete && (
     <>
       <Link to="/train">
         <div className="main">
