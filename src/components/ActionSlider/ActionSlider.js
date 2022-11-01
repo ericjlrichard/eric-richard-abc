@@ -26,11 +26,11 @@ export default function ActionSlider({round, userSettings}) {
     actions.push(setL1, setL2, setL3, setL4);
     actions.push(setR1, setR2, setR3, setR4);
 
+    console.log("actionslide", round)
+
     let time = 0;
     let actionLeft = 0;
     let actionRight = 4;
-
-    console.log(determineSide("BR", "southpaw"))
 
     //set action map for sliding actions
     round.forEach(action => {
@@ -39,10 +39,8 @@ export default function ActionSlider({round, userSettings}) {
         
       } else {
 
-        //if the first character is not-not a number :P
         let actionIndex = -1
         let actionClass = "";
-
 
         if (determineSide(action, userSettings.stance) === "left") {
           actionIndex = actionLeft

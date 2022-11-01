@@ -2,10 +2,25 @@ import PadBox from "../../components/PadBox/PadBox"
 
 import "./Train.scss"
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export default function Train() {
+  const [actionsArray, setActionsArray] = useState(undefined)
   // let userSettings = {
   //   stance: "orthodox"
   // };
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/actionswithtypes`)
+    .then(res => {
+      setActionsArray(res.data)
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
 
   let userSettings = {};
 
@@ -18,16 +33,13 @@ export default function Train() {
     userSettings.stance = sessionStorage.getItem("abc_stance")
   }
 
-  userSettings.stance = "southpaw"
-
-  return (
+  return !!actionsArray && (
     <div className="train-page">
       <h1>Training Page</h1>
 
       <div className="pads-container">
-        <PadBox userSettings={userSettings} />
+        <PadBox actionsArray={actionsArray} userSettings={userSettings} />
       </div>
-      
 
     </div>
     
