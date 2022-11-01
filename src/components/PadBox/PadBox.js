@@ -4,7 +4,7 @@ import Pad from "../Pad/Pad"
 import { useState, useEffect } from "react";
 import {changePadState, setPadAnimWithReset} from "../../js/time-anim-utils";
 
-import { createRandomCombo, getActionsOfCombinedType } from "../../js/combo-utils";
+import { createRandomCombo, getActionsOfCombinedType, createRandomRound } from "../../js/combo-utils";
 
 
 import ActionSlider from "../ActionSlider/ActionSlider";
@@ -23,7 +23,7 @@ const padStatesFunc = [];
 const roundBase = [".", ".", ".", ".", "2", "3",".", "."]
 
 
-export default function PadBox({userSettings, actionsArray}) {
+export default function PadBox({userSettings, actionsArray, combosArray}) {
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")
@@ -41,9 +41,13 @@ export default function PadBox({userSettings, actionsArray}) {
   const [round, setRound] = useState(undefined)
 
   useEffect(() => {
+    
+    const nextRound = createRandomRound(combosArray, "regular")
+    console.table(nextRound);
 
-    //console.table(createRandomCombo(actionsArray, 2, 5, true));
-    setRound(roundBase.concat(createRandomCombo(actionsArray, 2, 5).map(item => item.code)));
+    setRound(nextRound)
+
+    //setRound(roundBase.concat(createRandomCombo(actionsArray, 2, 5).map(item => item.code)));
     
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
 
