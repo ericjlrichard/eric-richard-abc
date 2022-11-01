@@ -70,7 +70,7 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
             padNumber = action[0];
           }
           setPadAnimWithReset(padStatesFunc[padNumber - 1], "hit", time, "rest")
-          setSoundTimer(time)
+          setSoundTimer(time, padNumber)
         }
         
       }
