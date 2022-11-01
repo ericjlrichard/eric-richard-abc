@@ -4,6 +4,8 @@ import Pad from "../Pad/Pad"
 import { useState, useEffect } from "react";
 import {changePadState, setPadAnimWithReset} from "../../js/time-anim-utils";
 
+import { createRandomCombo, getActionsOfCombinedType } from "../../js/combo-utils";
+
 
 import ActionSlider from "../ActionSlider/ActionSlider";
 
@@ -14,9 +16,11 @@ for (let i = 0; i < 12; i++) {
 
 const padStatesFunc = [];
 
-const round = [".",".",".",".","P",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11", ".",".",".",".",".",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11", ".",".",".",".",".",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11", ".",".",".",".",".",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11"]
+//let round = [".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11", ".",".",".",".",".",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11"]
 
-export default function PadBox({userSettings}) {
+let round = [".", ".", ".", "1", "2", "3",".", ".", "."]
+
+export default function PadBox({userSettings, actionsArray}) {
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")
@@ -33,7 +37,13 @@ export default function PadBox({userSettings}) {
 
   useEffect(() => {
 
-    console.log(userSettings.stance)
+    //console.table(createRandomCombo(actionsArray, 2, 5, true));
+
+    createRandomCombo(actionsArray, 2, 5).forEach(action => {
+      round.push(action.code, ".", ".")
+    })
+
+    console.log(round)
 
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
 

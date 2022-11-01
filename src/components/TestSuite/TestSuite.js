@@ -1,7 +1,7 @@
 import "./TestSuite.scss"
 import axios from "axios"
 
-import {checkRandomizer, getRandom, getSkewedRandom} from "../../js/math-utils.js";
+import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom} from "../../js/math-utils.js";
 
 const API_URL = "http://localhost:8080"
 export default function TestSuite() {
@@ -32,17 +32,26 @@ export default function TestSuite() {
     
     console.log("Analyzing...")
     
-    console.log("Analysis", checkRandomizer(testArray, resultsArray))
+    console.log("Random - Analysis", checkRandomizer(testArray, resultsArray))
 
     console.log("Analyzing skewed random...")
 
     resultsArray = []
 
     for(let i = 0; i < numTests; i++) {
-      resultsArray.push(getSkewedRandom(testArray, [1, 4], 50))
+      resultsArray.push(getSkewedRandom(testArray, [1, 4], 90))
     }
 
-    console.log("Analysis", checkRandomizer(testArray, resultsArray))
+    console.log("SKewed random at 90% - Analysis", checkRandomizer(testArray, resultsArray))
+
+    resultsArray = []
+    console.log("checking random range...")
+
+    for (let i=0; i < 1000; i++)
+      resultsArray.push(getRandomFromRange(2, 7))
+
+    console.log("Random from 2 to 7", resultsArray)
+    console.log("Random range - analysis", checkRandomizer([2, 3, 4, 5, 6, 7], resultsArray))
   }
 
   return (
@@ -54,6 +63,7 @@ export default function TestSuite() {
         <option value="http://localhost:8080/boxers" >GET all boxers</option>
         <option value="http://localhost:8080/combos" >GET all combos</option>
         <option value="http://localhost:8080/actions" >GET all actions</option>
+        <option value="http://localhost:8080/actions" >GET all actions with types</option>
       </select>
       <button className="test__button">Autofill</button>
 
