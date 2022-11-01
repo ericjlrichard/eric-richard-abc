@@ -120,9 +120,7 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
  
     padSeconds(returnRound, 4)
   }
-
-    
-
+  
   return returnRound;
 }
 
@@ -147,6 +145,6 @@ function padComboIncrements(comboArray, increment) {
 }
 
 //will pad the combo according to speed (slow, medium, fast, extreme), also taking into account that slips and pulls are faster than ducks, for example.
-function intelligentPadCombo(speed) {
+function smartPadCombo(speed) {
 
 }
