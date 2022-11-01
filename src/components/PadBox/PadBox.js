@@ -18,7 +18,10 @@ const padStatesFunc = [];
 
 //let round = [".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11", ".",".",".",".",".",".","1","2","3",".",".",".","DR",".",".","2",".","SL",".","3", ".", ".", ".", "1", ".", ".", ".", "2", ".", ".", "3", ".", "12", ".",".",".", "1",".",".", "9", ".", ".", "9", ".",".",".", "11"]
 
-let round = [".", ".", ".", "1", "2", "3",".", ".", "."]
+//let round = [".", ".", ".", "1", "2", "3",".", ".",".", ".", ".", "4", "2o", "5",".", ".", "6", "8", "9", "3",".", ".", ".", "10", "11", "12",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3",".", ".", ".", "1", "2", "3", "."]
+
+const roundBase = [".", ".", ".", ".", "2", "3",".", "."]
+
 
 export default function PadBox({userSettings, actionsArray}) {
 
@@ -35,37 +38,41 @@ export default function PadBox({userSettings, actionsArray}) {
   const [padState11, setPadState11] = useState ("fadein")
   const [padState12, setPadState12] = useState ("fadein")
 
+  const [round, setRound] = useState(undefined)
+
   useEffect(() => {
 
     //console.table(createRandomCombo(actionsArray, 2, 5, true));
-
-    createRandomCombo(actionsArray, 2, 5).forEach(action => {
-      round.push(action.code, ".", ".")
-    })
-
-    console.log(round)
-
+    setRound(roundBase.concat(createRandomCombo(actionsArray, 2, 5).map(item => item.code)));
+    
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
 
+  }, [])
+
+  //round on Change
+  useEffect(() => {
     let time = 0;
 
     //set action map for pad hits
-    round.forEach(action => {
+    round?.forEach(action => {
       time += 250
       if (action === ".") {
         //nothing
       } else {
         if (!isNaN(action[0])) {
-          setPadAnimWithReset(padStatesFunc[action - 1], "hit", time, "rest")
+          let padNumber = action
+          if ((action === "1o") || (action === "2o")) {
+            padNumber = action[0];
+          }
+          setPadAnimWithReset(padStatesFunc[padNumber - 1], "hit", time, "rest")
         }
         
       }
     } )
-
-  }, [])
+  }, [round])
   
 
-  return (
+  return !!round && (
     <div className="pad-box">
       <Pad userSettings={userSettings} orientation="vertical" number="1" padState={padState1} />
       <Pad userSettings={userSettings} orientation="vertical" number="2" padState={padState2}/>

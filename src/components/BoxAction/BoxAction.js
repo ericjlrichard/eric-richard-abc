@@ -1,7 +1,6 @@
 import "./BoxAction.scss"
 
-export default function BoxAction({side, action, state}) {
-
+export default function BoxAction({side, state}) {
 
   return (
     <div className={`box-action box-action__${side} box-action--${state.anim}`}>

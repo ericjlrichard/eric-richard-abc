@@ -44,20 +44,16 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
   const returnCombo = []
   const actionsNb = getRandomFromRange(min, max)
 
-  console.log(actionsNb)
-
   for (let i = 0; i < actionsNb; i++) {
     let nextAction = getRandom(actionsArray)
 
     //if it's the first action, nothing to check, just add it, becoming the basis or our combo
     if (i===0) {
       returnCombo.push(nextAction)
-      console.log(i, nextAction)
     } else {
       if (alternateSide) {
         //first getting the previous action and checking on which side it is
         const previousAction = returnCombo[i-1]
-        console.log(i, returnCombo)
         if (previousAction.types.indexOf("lead") >= 0) {
           //A normal combo sometimes has defense in it but I'd say about 90% offense. Could eventually be slideable.
           returnCombo.push(getSkewedFromArrays(getActionsOfCombinedType(actionsArray, ["rear", "defense"]), getActionsOfAnyType(actionsArray, ["lead", "offense"]), 98))
