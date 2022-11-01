@@ -1,0 +1,23 @@
+
+
+.about {
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  &__img {
+    width: 100%;
+  }
+  &__img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  &__img-caption {
+    font-size: .7rem;
+  }
+}

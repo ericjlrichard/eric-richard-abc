@@ -4,27 +4,38 @@ import "./Main.scss"
 //import axios from "axios";
 import { useState, useEffect} from "react";
 
+import { Link } from "react-router-dom";
+import About from "../About/About";
+
 export default function Main()  {
-  const [test, setTest] = useState(undefined)
+  const [loadComplete, setLoadComplete] = useState(false)
 
   useEffect(() => {
     //onLoad()
-    setTest(true)
+    setLoadComplete(true)
   }, [])
 
   //TD
-  if (!test) {
+  if (!loadComplete) {
     return ( <div>Main Loading!</div>)
   }
 
-  return !!test && (
-    <div className="main">
-      
-      <div className="main__hero">
-      </div>
-      <div className="main__prompt">
-        Train Now
-      </div>
-    </div>
+  return !!loadComplete && (
+    <>
+      <Link to="/train">
+        <div className="main">
+          
+          <div className="main__hero">
+          </div>
+          <div className="main__prompt">
+            Train Now!
+          </div>
+        </div>
+      </Link>
+        
+      <About />
+
+    </>
+    
   )
 }
