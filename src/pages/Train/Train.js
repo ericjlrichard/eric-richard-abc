@@ -5,9 +5,15 @@ import "./Train.scss"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import TrainModal from "../../components/TrainModal/TrainModal";
+
+import { useNavigate } from "react-router-dom";
+
 export default function Train() {
+  const navigate = useNavigate();
   const [actionsArray, setActionsArray] = useState(undefined)
   const [combosArray, setCombosArray] = useState(undefined)
+  const [showModal, setShowModal] = useState(true)
 
   //onLoad
   useEffect(() => {
@@ -38,10 +44,27 @@ export default function Train() {
     userSettings.stance = sessionStorage.getItem("abc_stance")
   }
 
-  //userSettings.stance = "orthodox";
+  userSettings.stance = "southpaw";
 
-  return !!actionsArray && !!combosArray && (
+  const clickClose = (event) => {
+    console.log("clic?")
+    event.preventDefault();
+    navigate("/");
+  }
+
+  const clickTrain = (event) => {
+    setShowModal(false);
+  }
+
+  if(showModal) {
+    return (
+      <TrainModal showModal={showModal} userSettings={userSettings} clickClose={clickClose} clickTrain={clickTrain} />
+    )
+  }
+
+  return !!actionsArray && !!combosArray && !showModal && (
     <div className="train-page">
+      
 
       <div className="pads-container">
         <PadBox combosArray={combosArray} actionsArray={actionsArray} userSettings={userSettings} />
