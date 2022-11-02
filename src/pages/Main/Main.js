@@ -9,7 +9,6 @@ import About from "../About/About";
 
 export default function Main()  {
   const [loadComplete, setLoadComplete] = useState(false)
-  //const [userSettings, setUserSettings] = useState(undefined)
 
   useEffect(() => {
     //onLoad()
@@ -27,6 +26,7 @@ export default function Main()  {
 
 
     //userSettings.stance = "orthodox";
+
     setLoadComplete(true)
   }, [])
 

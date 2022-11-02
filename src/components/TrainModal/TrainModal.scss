@@ -10,6 +10,7 @@
   &__section {
     margin-top: 10px;
     margin-bottom: 10px;
+    
 
     &--two-cols {
       display: flex;
@@ -19,7 +20,9 @@
   &__sub-section {
 
     &--left {
-      margin-right: 20px;
+      margin-right: 10px;
+      padding-right: 10px;
+      border-right: 1px solid color.$abc_white;
     }
   }
 
