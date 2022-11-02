@@ -5,8 +5,6 @@ import userUtils from "../../js/user-utils";
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
-const checkBoxers = [];
-
 export default function TrainModal({ showModal, clickClose, clickTrain }) {
   const [numSeconds, setNumSeconds] = useState(5);
   const [boxers, setBoxers] = useState(undefined);
@@ -14,8 +12,6 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
   const [userSettings, setUserSettings] = useState(
     userUtils.getSessionSettings()
   );
-
-
 
   useEffect(() => {
     axios
