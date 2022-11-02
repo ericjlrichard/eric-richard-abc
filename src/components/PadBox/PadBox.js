@@ -45,8 +45,6 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
     
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
 
-    console.log("bye")
-
   }, [])
 
    //onUnLoad
