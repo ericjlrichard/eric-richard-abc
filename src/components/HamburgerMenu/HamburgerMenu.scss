@@ -1,4 +1,4 @@
-@use "../../styles/partials/colors";
+@use "../../styles/partials/colors" as color;
 @use "../../styles/partials/anims" as anim;
 
 .hamburger {
@@ -16,9 +16,9 @@
     top: 4.5rem;
     left: calc(100vw - 7.5rem);
     
-    background-color: colors.$abc-light;
-    color: colors.$abc-light;
-    border-color: colors.$abc-nuanced;
+    background-color: color.$abc-light;
+    color: color.$abc-light;
+    border-color: color.$abc-nuanced;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -29,6 +29,6 @@
   }
 
   &__link {
-    color: colors.$abc-black;
+    color: color.$abc-brown;
   }
 }

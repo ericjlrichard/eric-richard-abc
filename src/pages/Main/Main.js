@@ -12,6 +12,21 @@ export default function Main()  {
 
   useEffect(() => {
     //onLoad()
+    // const userSettingsObject = {};
+
+    // if(!sessionStorage.getItem("abc_stance")) {
+    //   sessionStorage.setItem("abc_stance", userSettingsObject.stance)
+    // } else {
+    //   userSettingsObject.stance = sessionStorage.getItem("abc_stance")
+    // }
+  
+    // setUserSettings(userSettingsObject)
+
+    // console.log(userSettingsObject.stance)
+
+
+    //userSettings.stance = "orthodox";
+
     setLoadComplete(true)
   }, [])
 
