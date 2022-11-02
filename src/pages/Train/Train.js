@@ -47,7 +47,7 @@ export default function Train() {
   userSettings.stance = "southpaw";
 
   const clickClose = (event) => {
-    console.log("clic?")
+
     event.preventDefault();
     navigate("/");
   }

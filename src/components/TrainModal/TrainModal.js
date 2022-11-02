@@ -15,7 +15,7 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
     userUtils.getSessionSettings()
   );
 
-  //console.log(userSettings)
+
 
   useEffect(() => {
     axios
@@ -40,7 +40,6 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
       }
     }
 
-    console.log(userSettings)
   }, [numSeconds]);
 
   // ######## form tools
