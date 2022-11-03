@@ -1,7 +1,5 @@
 @use "../../styles/partials/anims" as anim;
-
 @use "../../styles/partials/colors" as color;
-
 @use "../../styles/partials/media" as med;
 
 .box-action {
@@ -48,10 +46,14 @@
   }
 
   &--slide-left {
-    animation-name: slide-left;
+    animation-name: slide-left-mobile;
     animation-duration: 1s;
     animation-timing-function: linear;
     display: block;
+
+    @include med.pad-break {
+      animation-name: slide-left
+    }
   }
   
   &--slide-right {

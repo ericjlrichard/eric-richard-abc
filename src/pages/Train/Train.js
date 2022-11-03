@@ -20,7 +20,7 @@ export default function Train() {
   const [combosArray, setCombosArray] = useState(undefined)
   const [showModal, setShowModal] = useState(true)
   const [userSettings, setUserSettings] = useState(userUtils.getSessionSettings())
-  const [countdown, setCountdown] = useState(undefined)
+  const [roundCountdown, setRoundCountdown] = useState(undefined)
 
   //onLoad
   useEffect(() => {
@@ -48,14 +48,13 @@ export default function Train() {
 
   useEffect(() => {
 
-    if (countdown > 0) {
+    if (roundCountdown > 0) {
       setTimeout(() => {
-        setCountdown(countdown-1)
+        setRoundCountdown(roundCountdown-1)
       }, 1000)
     }
-    
-
-  }, [countdown])
+  
+  }, [roundCountdown])
 
 
   //Closing the modal returns to main
@@ -68,19 +67,21 @@ export default function Train() {
   //Modal confirmed, training starts
   const clickTrain = (event) => {
     setShowModal(false);
-    setCountdown(userSettings.roundDuration)
-    console.log(timerFromSeconds(userSettings.roundDuration))
+    setRoundCountdown(userSettings.roundDuration)
   }
 
   if(showModal) {
     return (
-      <TrainModal showModal={showModal} clickClose={clickClose} clickTrain={clickTrain} />
+      <div className="modal__container">
+        <TrainModal showModal={showModal} clickClose={clickClose} clickTrain={clickTrain} />
+      </div>
+      
     )
   }
 
   return !!actionsArray && !!combosArray && !showModal && (
     <div className="train-page">
-      <Timer seconds={countdown} />
+      <Timer seconds={roundCountdown} />
       
       <div className="pads-container">
         <PadBox combosArray={combosArray} actionsArray={actionsArray} userSettings={userSettings} />

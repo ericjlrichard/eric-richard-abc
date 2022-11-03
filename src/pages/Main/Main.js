@@ -7,6 +7,9 @@ import { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import About from "../About/About";
 
+//test
+import {buildWorkout} from "../../js/combo-utils"
+
 export default function Main()  {
   const [loadComplete, setLoadComplete] = useState(false)
 
@@ -26,6 +29,8 @@ export default function Main()  {
 
 
     //userSettings.stance = "orthodox";
+
+    buildWorkout(30, 180, 30)
 
     setLoadComplete(true)
   }, [])

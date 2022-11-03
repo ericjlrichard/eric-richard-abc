@@ -5,3 +5,11 @@
   //border: 2px solid cornflowerblue;
   position: relative;
 }
+
+.modal {
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,7 +1,10 @@
 @use "../../styles/partials/colors" as color;
 @use "../../styles/partials/anims" as anim;
+@use "../../styles/partials/media" as med;
 
 .hamburger {
+
+  
 
   &__divider {
     width: 90%;
@@ -12,6 +15,10 @@
     margin-top: 5px;
   }
   &__menu {
+
+    @include med.tablet {
+      display: none;
+    }
   
     //just to get over that hero div
     z-index: 2;
