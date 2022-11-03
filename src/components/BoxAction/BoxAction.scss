@@ -2,6 +2,8 @@
 
 @use "../../styles/partials/colors" as color;
 
+@use "../../styles/partials/media" as med;
+
 .box-action {
   position: absolute;
   background-color: color.$abc-redpad;
@@ -26,6 +28,10 @@
 
     &--orthodox {
       margin-left: 80vw;
+
+      @include med.pad-break {
+        margin-left: 100px;
+      }
     }
   }
 
@@ -34,6 +40,10 @@
 
     &--orthodox {
       left: 0px;
+    }
+
+    @include med.pad-break {
+      margin-left: 100px;
     }
   }
 
