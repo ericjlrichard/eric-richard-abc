@@ -64,21 +64,29 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
   //round on Change
   useEffect(() => {
     let time = 0;
-    const soundTimeoutArray = soundTimeouts ? soundTimeouts : [];
 
+    console.log(round)
     //set action map for pad hits
     round?.forEach(action => {
       time += 250
       if (action === ".") {
         //just a pause for now
       } else {
+
         if (!isNaN(action[0])) {
+
           let padNumber = action
+
           if ((action === "1o") || (action === "2o")) {
             padNumber = action[0];
           }
+          
           setPadAnimWithReset(padStatesFunc[padNumber - 1], "hit", time, "rest")
-          soundTimeouts.push(setSoundTimer(time, padNumber))
+          
+          if(userSettings.sounds) {
+            soundTimeouts.push(setSoundTimer(time, padNumber))
+          }
+          
         }
         
       }

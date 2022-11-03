@@ -121,7 +121,7 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
     padSeconds(returnRound, 4)
   }
   
-  return returnRound;
+  return returnRound.slice(0, actionLimit);
 }
 
 //adds pauses of "seconds" seconds. Doesn't take fractions into account.

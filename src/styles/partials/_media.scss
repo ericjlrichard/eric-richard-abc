@@ -6,6 +6,12 @@
   }
 }
 
+@mixin pad-break {
+  @media screen and (min-width: var.$padbox-breakpoint) {
+    @content;
+  }
+}
+
 @mixin desktop {
   @media screen and (min-width: var.$desktop-breakpoint) {
     @content;
