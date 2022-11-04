@@ -29,7 +29,6 @@ export default function NewPadBox({workout}) {
 
   //Until we're set up, don't go any further!
   while(!userSettings || (roundIndex === undefined)) {
-    console.log(userSettings, roundIndex)
     return (
     <div className="">
       <Loading loadMessage="Loading workout..." />
@@ -37,11 +36,11 @@ export default function NewPadBox({workout}) {
     )
   }
 
-  //show the round modal at the start of the workout
+  //show the round modal at the start of each round
   if (showRoundModal) {
     return (
       <div className="">
-        <RoundModal clickStartNow={clickStartNow} showRoundModal={showRoundModal} roundIndex={roundIndex} breakTime={30} />
+        <RoundModal clickStartNow={clickStartNow} showRoundModal={showRoundModal} round= {workout[roundIndex]} roundIndex={roundIndex} breakTime={30} />
       </div>
     )
   }

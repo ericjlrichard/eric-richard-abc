@@ -76,7 +76,12 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
 export function createRandomRound(combosArray, type = "regular", duration = defaultRoundDuration ) {
   //we have a limit of 4 actions per second. For a three minutes round, so should be a maximum of 720 actions, including pauses
   const actionLimit = duration * 4;
-  const returnRound = []
+  const returnObj = {}
+
+  //we will store the used combos ID in combos, and the round instructions themselves in round
+  returnObj.combos = []
+  returnObj.round = []
+
   let combosArrayFiltered = []
   let combosUsed = []
 
@@ -94,34 +99,40 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
       combosArrayFiltered = combosArray;
   }
 
-  //We're gonna start with a 2 seconds padding.
-  padSeconds(returnRound, 2)
+  //2 seconds padding at round start
+  
+  padSeconds(returnObj.round, 2)
 
-  while(returnRound.length < actionLimit) {
+  while(returnObj.round.length < actionLimit) {
     const nextCombo = getRandom(combosArrayFiltered);
 
-    combosUsed.push(nextCombo)
+    //console.log ("comboutils", nextCombo)
+    returnObj.combos.push(nextCombo.id)
 
     const nextComboArray = nextCombo.combo_string.split(",");
 
-    returnRound.push(...padComboIncrements(nextComboArray, 4))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 4))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 2))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 2))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 1))
-    padSeconds(returnRound, 4)
-    returnRound.push(...nextComboArray)
-    padSeconds(returnRound, 4)
-    returnRound.push(...nextComboArray)
+    //switch combo indicator
+    returnObj.round.push("!")
+
+    returnObj.round.push(...padComboIncrements(nextComboArray, 4))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 4))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 2))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 2))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 1))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...nextComboArray)
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...nextComboArray)
  
-    padSeconds(returnRound, 4)
+    padSeconds(returnObj.round, 4)
   }
   
-  return returnRound.slice(0, actionLimit);
+  returnObj.round = returnObj.round.slice(0, actionLimit)
+  return returnObj;
 }
 
 //adds pauses of "seconds" seconds. Doesn't take fractions into account.
@@ -144,7 +155,7 @@ function padComboIncrements(comboArray, increment) {
   return returnArray;
 }
 
-//will pad the combo according to speed (slow, medium, fast, extreme), also taking into account that slips and pulls are faster than ducks, for example.
+//Pad the combo according to speed (slow, medium, fast, extreme), also taking into account that slips and pulls are faster than ducks, for example.
 function smartPadCombo(speed) {
 
 }
@@ -165,7 +176,7 @@ export function createWorkout (combosArray, workoutDuration, roundDuration, brea
 
   //for each number of rounds, create a round, add it to the workout object
 
-  console.log(realRoundDuration, numberOfRounds)
+  //console.log(realRoundDuration, numberOfRounds)
 
   console.log(workoutArray)
   return workoutArray;
