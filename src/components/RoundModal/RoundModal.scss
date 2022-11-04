@@ -1,0 +1,28 @@
+@use "../../styles/partials/colors" as color;
+
+.round-modal {
+  padding: 10px;
+  padding-top: 0px;
+  border-radius: 5px;
+  background-color: color.$abc-black;
+  border: 2px solid color.$abc-brown;
+  margin: 10px;
+
+  max-width: 500px;
+  max-height: 500px;
+
+  &__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__timer {
+    background-color: color.$abc-light;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}

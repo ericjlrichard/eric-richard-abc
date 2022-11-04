@@ -4,10 +4,9 @@ import Pad from "../Pad/Pad"
 import { useState, useEffect } from "react";
 import {setPadAnimWithReset} from "../../js/time-anim-utils";
 
-import { createRandomRound } from "../../js/combo-utils";
+import { createRandomRound, createWorkout } from "../../js/combo-utils";
 
 import { setSoundTimer } from "../../js/sound-utils";
-
 
 import ActionSlider from "../ActionSlider/ActionSlider";
 
@@ -18,7 +17,7 @@ for (let i = 0; i < 12; i++) {
 
 const padStatesFunc = [];
 
-export default function PadBox({userSettings, actionsArray, combosArray}) {
+export default function PadBox({roundIndex, setRoundIndex, userSettings, actionsArray, combosArray}) {
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")
@@ -34,14 +33,20 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
   const [padState12, setPadState12] = useState ("fadein")
 
   const [round, setRound] = useState(undefined)
+  const [workout, setWorkout] = useState(undefined)
 
   const [soundTimeouts, setSoundTimeouts] = useState([])
 
   
   //onload
   useEffect(() => {
+
+    //30 minutes workout, 30 seconds rounds, 30 seconds breaks
+    const workoutArray = createWorkout(combosArray, 30, 30, 30)
+    setWorkout(workoutArray)
+    setRoundIndex(0)
     
-    setRound(createRandomRound(combosArray, "regular"))
+    setRound(workoutArray[roundIndex])
     
     padStatesFunc.push(setPadState1, setPadState2, setPadState3, setPadState4, setPadState5, setPadState6, setPadState7, setPadState8, setPadState9, setPadState10, setPadState11, setPadState12)
 
@@ -57,7 +62,6 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
       })
       setSoundTimeouts([])
     }
-    
 
   }, [])
 
@@ -65,7 +69,6 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
   useEffect(() => {
     let time = 0;
 
-    console.log(round)
     //set action map for pad hits
     round?.forEach(action => {
       time += 250
@@ -92,12 +95,15 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
       }
     } )
 
+    setRoundIndex(roundIndex+1)
+
+
     setSoundTimeouts(soundTimeouts)
 
   }, [round])
   
 
-  return !!round && !!soundTimeouts && (
+  return !!round && !!soundTimeouts && !!userSettings && (
     <div className="pad-box">
       <Pad userSettings={userSettings} orientation="vertical" number="1" padState={padState1} />
       <Pad userSettings={userSettings} orientation="vertical" number="2" padState={padState2}/>
@@ -106,7 +112,8 @@ export default function PadBox({userSettings, actionsArray, combosArray}) {
       <Pad userSettings={userSettings} orientation="vertical" number="5" padState={padState5}/>
       <Pad userSettings={userSettings} orientation="vertical" number="6" padState={padState6}/>
 
-      <ActionSlider round={round} userSettings={userSettings}/>
+      <ActionSlider round={round} userSettings={userSettings} />
+
       <Pad userSettings={userSettings} orientation="vertical" number="7" padState={padState7}/>
       <Pad userSettings={userSettings} orientation="vertical" number="8" padState={padState8}/>
       <Pad userSettings={userSettings} orientation="horizontal" number="9" padState={padState9}/>

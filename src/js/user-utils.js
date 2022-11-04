@@ -31,6 +31,6 @@ exports.setSessionSettings = (userSettings) => {
   sessionStorage.setItem("abc_combos_all", userSettings.combosAll)
 }
 
-exports.getComboStringFromForm = () => {
-
+exports.createUserSettingsFromForm = (form) => {
+  
 }

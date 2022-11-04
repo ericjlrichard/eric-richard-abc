@@ -53,13 +53,29 @@
     text-transform: uppercase;
     border: 2px solid color.$abc-lightred;
     margin-top: 10px;
+
+    cursor: pointer;
+
+    &--close {
+      cursor: pointer;
+    }
     
   }
 }
 
 input {
   accent-color: color.$abc-green;
+
+  &::placeholder {
+    color: color.$abc-light;
+  }
+
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
+
 
 /* The switch - the box around the check-slider */
 .switch {

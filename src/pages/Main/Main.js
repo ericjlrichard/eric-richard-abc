@@ -30,8 +30,6 @@ export default function Main()  {
 
     //userSettings.stance = "orthodox";
 
-    buildWorkout(30, 180, 30)
-
     setLoadComplete(true)
   }, [])
 
@@ -42,7 +40,7 @@ export default function Main()  {
 
   return !!loadComplete && (
     <>
-      <Link to="/train">
+      <Link to="/new-train">
         <div className="main">
           
           <div className="main__hero">

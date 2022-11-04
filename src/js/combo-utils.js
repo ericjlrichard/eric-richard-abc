@@ -149,15 +149,24 @@ function smartPadCombo(speed) {
 
 }
 
-export function buildWorkout (workoutDuration, roundDuration, breakDuration) {
+export function createWorkout (combosArray, workoutDuration, roundDuration, breakDuration) {
 
   //determine how many seconds a round + break will last
   const realRoundDuration = roundDuration + breakDuration;
 
+  const workoutArray = []
+
   //determine number of rounds inside workoutDuration
   const numberOfRounds = Math.floor((workoutDuration * 60) / realRoundDuration)
+
+  for(let i = 0; i< numberOfRounds; i++) {
+    workoutArray.push(createRandomRound(combosArray, "regular", roundDuration))
+  }
 
   //for each number of rounds, create a round, add it to the workout object
 
   console.log(realRoundDuration, numberOfRounds)
+
+  console.log(workoutArray)
+  return workoutArray;
 }
