@@ -1,0 +1,10 @@
+.slider {
+  position: relative;
+  top: 47vw;
+  height: 30px;
+}
+@media screen and (min-width: 400px) {
+  .slider {
+    top: 200px;
+  }
+}/*# sourceMappingURL=ActionSlider.css.map */

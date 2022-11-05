@@ -181,3 +181,17 @@ export function createWorkout (combosArray, workoutDuration, roundDuration, brea
   console.log(workoutArray)
   return workoutArray;
 }
+
+//translates a combo string (ex: 1,2,SL) into a more readable format (ex: jab, cross, Slip Lead)
+export function translateComboString(comboString, actionsArray) {
+  let returnString = "";
+  const comboArray = comboString.split(",")
+
+  comboArray.forEach(code => {
+    returnString += actionsArray.find(item => item.code === code).name + `(${code}), `
+  })
+  console.log(comboArray)
+  console.log(actionsArray);
+
+  return returnString.slice(0, returnString.length-2);
+}

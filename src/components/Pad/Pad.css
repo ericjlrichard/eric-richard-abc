@@ -1,0 +1,451 @@
+@-webkit-keyframes hamburger-appear {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes hamburger-appear {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes slide-right {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+@keyframes slide-right {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+@-webkit-keyframes slide-left {
+  from {
+    margin-left: 320px;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+@keyframes slide-left {
+  from {
+    margin-left: 320px;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+@-webkit-keyframes slide-left-mobile {
+  from {
+    margin-left: 80vw;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+@keyframes slide-left-mobile {
+  from {
+    margin-left: 80vw;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes hit {
+  98% {
+    transform: rotate(4deg);
+  }
+  99% {
+    trasnform: rotate(-6deg);
+  }
+  100% {
+    background-color: red;
+    width: 90%;
+    height: 90%;
+  }
+}
+@keyframes hit {
+  98% {
+    transform: rotate(4deg);
+  }
+  99% {
+    trasnform: rotate(-6deg);
+  }
+  100% {
+    background-color: red;
+    width: 90%;
+    height: 90%;
+  }
+}
+@-webkit-keyframes wiggle {
+  30% {
+    transform: rotate(0deg);
+  }
+  2%, 10%, 18% {
+    transform: rotate(4deg);
+  }
+  6%, 14%, 22% {
+    transform: rotate(-4deg);
+  }
+}
+@keyframes wiggle {
+  30% {
+    transform: rotate(0deg);
+  }
+  2%, 10%, 18% {
+    transform: rotate(4deg);
+  }
+  6%, 14%, 22% {
+    transform: rotate(-4deg);
+  }
+}
+.pad {
+  background-color: #ececec;
+  border: 2px solid #d6d1be;
+  border-radius: 10px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #322d2d;
+}
+.pad--vertical {
+  width: 18vw;
+  height: 22vw;
+  max-width: 75px;
+  max-height: 90px;
+  border-top: 5px solid #d6d1be;
+  border-bottom: 5px solid #d6d1be;
+  border-right: 5px solid #dce3e1;
+  border-left: 5px solid #dce3e1;
+}
+.pad--horizontal {
+  width: 22vw;
+  height: 18vw;
+  max-height: 75px;
+  max-width: 90px;
+  border-top: 5px solid #dce3e1;
+  border-bottom: 5px solid #dce3e1;
+  border-left: 5px solid #d6d1be;
+  border-right: 5px solid #d6d1be;
+}
+.pad--fadein {
+  -webkit-animation-name: fade-in;
+          animation-name: fade-in;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+}
+.pad--hit {
+  -webkit-animation-name: hit;
+          animation-name: hit;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+.pad--rest {
+  opacity: 100%;
+}
+
+.pad1 {
+  top: 1vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(12deg);
+}
+.pad1--orthodox {
+  top: 1vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-12deg);
+}
+@media screen and (min-width: 400px) {
+  .pad1--orthodox {
+    top: 4px;
+    left: calc(50% + 7px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad1 {
+    top: 4px;
+    left: calc(50% - 80px);
+  }
+}
+
+.pad2 {
+  top: 1vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-12deg);
+}
+.pad2--orthodox {
+  top: 1vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(12deg);
+}
+@media screen and (min-width: 400px) {
+  .pad2--orthodox {
+    top: 4px;
+    left: calc(50% - 80px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad2 {
+    top: 4px;
+    left: calc(50% + 7px);
+  }
+}
+
+.pad3 {
+  top: 10vw;
+  left: 5vw;
+  transform: perspective(100px) rotateY(50deg);
+}
+.pad3--orthodox {
+  top: 10vw;
+  left: calc(100% - 27vw);
+  transform: perspective(100px) rotateY(-50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad3--orthodox {
+    top: 35px;
+    left: calc(100% - 108px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad3 {
+    top: 35px;
+    left: 20px;
+  }
+}
+
+.pad4 {
+  top: 10vw;
+  left: calc(100% - 27vw);
+  transform: perspective(100px) rotateY(-50deg);
+}
+.pad4--orthodox {
+  top: 10vw;
+  left: 5vw;
+  transform: perspective(100px) rotateY(50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad4--orthodox {
+    top: 35px;
+    left: 20px;
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad4 {
+    top: 35px;
+    left: calc(100% - 108px);
+  }
+}
+
+.pad5 {
+  top: 27vw;
+  left: calc(50% - 23vw);
+  transform: perspective(100px) rotateX(-50deg);
+}
+.pad5--orthodox {
+  top: 27vw;
+  left: calc(50% + 5vw);
+  transform: perspective(100px) rotateX(-50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad5--orthodox {
+    top: 108px;
+    left: calc(50% + 20px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad5 {
+    top: 108px;
+    left: calc(50% - 90px);
+  }
+}
+
+.pad6 {
+  top: 27vw;
+  left: calc(50% + 5vw);
+  transform: perspective(100px) rotateX(-50deg);
+}
+.pad6--orthodox {
+  top: 27vw;
+  left: calc(50% - 23vw);
+  transform: perspective(100px) rotateX(-50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad6--orthodox {
+    top: 108px;
+    left: calc(50% - 90px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad6 {
+    top: 108px;
+    left: calc(50% + 20px);
+  }
+}
+
+.pad7 {
+  top: 60vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(15deg) rotateX(10deg);
+}
+.pad7--orthodox {
+  top: 60vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-15deg) rotateX(10deg);
+}
+@media screen and (min-width: 400px) {
+  .pad7--orthodox {
+    top: 240px;
+    left: calc(50% + 8px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad7 {
+    top: 240px;
+    left: calc(50% - 80px);
+  }
+}
+
+.pad8 {
+  top: 60vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-15deg) rotateX(10deg);
+}
+.pad8--orthodox {
+  top: 60vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(15deg) rotateX(10deg);
+}
+@media screen and (min-width: 400px) {
+  .pad8--orthodox {
+    top: 240px;
+    left: calc(50% - 80px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad8 {
+    top: 240px;
+    left: calc(50% + 8px);
+  }
+}
+
+.pad9 {
+  top: 70vw;
+  left: calc(100% - 22vw);
+  transform: perspective(100px) rotateY(50deg);
+}
+.pad9--orthodox {
+  top: 70vw;
+  left: 0vw;
+  transform: perspective(100px) rotateY(-50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad9--orthodox {
+    top: 280px;
+    left: 0px;
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad9 {
+    top: 280px;
+    left: calc(100% - 88px);
+  }
+}
+
+.pad10 {
+  top: 70vw;
+  left: 0vw;
+  transform: perspective(100px) rotateY(-50deg);
+}
+.pad10--orthodox {
+  top: 70vw;
+  left: calc(100% - 22vw);
+  transform: perspective(100px) rotateY(50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad10--orthodox {
+    top: 280px;
+    left: calc(100% - 88px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad10 {
+    top: 280px;
+    left: 0px;
+  }
+}
+
+.pad11 {
+  top: 90vw;
+  left: calc(50% + 7vw);
+  transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+}
+.pad11--orthodox {
+  top: 90vw;
+  left: calc(50% - 25vw);
+  transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad11--orthodox {
+    top: 364px;
+    left: calc(50% - 102px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad11 {
+    top: 364px;
+    left: calc(50% + 30px);
+  }
+}
+
+.pad12 {
+  top: 90vw;
+  left: calc(50% - 25vw);
+  transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+}
+.pad12--orthodox {
+  top: 90vw;
+  left: calc(50% + 7vw);
+  transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+}
+@media screen and (min-width: 400px) {
+  .pad12--orthodox {
+    top: 364px;
+    left: calc(50% + 30px);
+  }
+}
+@media screen and (min-width: 400px) {
+  .pad12 {
+    top: 364px;
+    left: calc(50% - 102px);
+  }
+}/*# sourceMappingURL=Pad.css.map */
