@@ -168,60 +168,63 @@ export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
             seconds
           </div>
 
-          <div className="modal__section--two-cols">
-            <div className="modal__sub-section modal__sub-section--left">
-              Combos:<br></br>
-              <input
-                name="combos"
-                value="all"
-                type="radio"
-                id="allCombos"
-                defaultChecked={userSettings.combosAll === "all"}
-                onChange={handleComboChange}
-              ></input>
-              <label htmlFor="allCombos">all</label><br></br>
-              <input
-                name="combos"
-                value="some"
-                type="radio"
-                id="someCombos"
-                defaultChecked={userSettings.combosAll !== "all"}
-                onChange={handleComboChange}
-              ></input>
-              <label htmlFor="someCombos">some</label>
-              <br></br>
-              <br></br>
-              Sounds:
-              <label className="switch">
+          <details className="modal__details">
+            <summary>Advanced settings</summary>
+            <div className="modal__section--two-cols">
+              <div className="modal__sub-section modal__sub-section--left">
+                Combos:<br></br>
                 <input
-                  name="sounds"
-                  type="checkbox"
-                  defaultChecked={userSettings.sounds}
-                />
-                <span className="check-slider round"></span>
-              </label>
-            </div>
-
-            <div className="modal__subsection">
-              {boxers.map((item) => (
-                <div key={item.id}>
+                  name="combos"
+                  value="all"
+                  type="radio"
+                  id="allCombos"
+                  defaultChecked={userSettings.combosAll === "all"}
+                  onChange={handleComboChange}
+                ></input>
+                <label htmlFor="allCombos">all</label><br></br>
+                <input
+                  name="combos"
+                  value="some"
+                  type="radio"
+                  id="someCombos"
+                  defaultChecked={userSettings.combosAll !== "all"}
+                  onChange={handleComboChange}
+                ></input>
+                <label htmlFor="someCombos">some</label>
+                <br></br>
+                <br></br>
+                Sounds:
+                <label className="switch">
                   <input
-                    className="modal__check-boxers"
+                    name="sounds"
                     type="checkbox"
-                    defaultChecked={userSettings.combos.find(haystack => { return Number(haystack) === item.id })}
-                    disabled={userSettings.combosAll === "all"}
-                    id={`checkBoxers${item.id}`}
-                    value={item.id}
-                  ></input>{" "}
-                  {item.first_name +
-                    " '" +
-                    item.nickname +
-                    "' " +
-                    item.last_name}
-                </div>
-              ))}
+                    defaultChecked={userSettings.sounds}
+                  />
+                  <span className="check-slider round"></span>
+                </label>
+              </div>
+
+              <div className="modal__subsection">
+                {boxers.map((item) => (
+                  <div key={item.id}>
+                    <input
+                      className="modal__check-boxers"
+                      type="checkbox"
+                      defaultChecked={userSettings.combos.find(haystack => { return Number(haystack) === item.id })}
+                      disabled={userSettings.combosAll === "all"}
+                      id={`checkBoxers${item.id}`}
+                      value={item.id}
+                    ></input>{" "}
+                    {item.first_name +
+                      " '" +
+                      item.nickname +
+                      "' " +
+                      item.last_name}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </details>
         </div>
 
         <button className="modal__button">
