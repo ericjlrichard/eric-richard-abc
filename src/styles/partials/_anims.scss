@@ -22,13 +22,10 @@
   }
 }
 
-
-//now it doesn't work on mobile. maybe create two anims and @include in pad.scss, this is clearly not working, which is dumb.
 @keyframes slide-left {
   from {
 
     margin-left: 320px;
-
     
   }
   to {
@@ -93,4 +90,20 @@
     transform: rotate(-4deg);
   }
 
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    width: 10px;
+    z-index: -6;
+    margin-top: -300px;
+  }
+
+  to {
+    transform: rotate(1080deg);
+    width: 350px;
+    z-index: 2;
+    margin-top: 10px;
+  }
 }
