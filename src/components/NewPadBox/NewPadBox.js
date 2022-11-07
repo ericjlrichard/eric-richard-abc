@@ -81,9 +81,10 @@ export default function NewPadBox({workout}) {
   }, [])
 
   //onUnLoad
-  //onUnLoad
+
   useEffect(() => () => {
 
+  console.log("Hello")
   //clears out the sounds
   if(soundTimeouts) {
     soundTimeouts.forEach(sound => {
@@ -153,6 +154,7 @@ export default function NewPadBox({workout}) {
       setBellTimer(time, 3);
     }
 
+    console.log(soundTimeouts)
     setSoundTimeouts(soundTimeouts)
     
 

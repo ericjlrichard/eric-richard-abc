@@ -18,7 +18,7 @@ export default function HamburgerMenu({showHamburger, setShowHamburger, handleHa
   return (
     <div className="hamburger__menu">
       <NavLink className="hamburger__link" to="/" onClick={handleOnClick}>Home</NavLink>
-      <NavLink className="hamburger__link" to="/train" onClick={handleOnClick}>Train</NavLink>
+      <NavLink className="hamburger__link" to="/new-train" onClick={handleOnClick}>Train</NavLink>
       <div className="hamburger__divider"></div>
       <NavLink className="hamburger__link" to="/account" onClick={handleOnClick}>Account</NavLink>
     </div>

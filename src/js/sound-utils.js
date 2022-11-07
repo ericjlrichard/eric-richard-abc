@@ -1,5 +1,8 @@
 
 //returns the timeout id
+
+const API_URL = process.env.REACT_APP_SERVER_URL;
+
 exports.setSoundTimer = (ms, action) => {
 
   return setTimeout(() => {
@@ -14,21 +17,21 @@ exports.setSoundTimer = (ms, action) => {
       soundToUse = 9;
     }
 
-    const audio = new Audio(`http://localhost:8080/sounds/hit${soundToUse}.wav`);
+    const audio = new Audio(`${API_URL}/sounds/hit${soundToUse}.wav`);
     audio.play()
   }, ms + 1000)
 }
 
 exports.setBellTimer = (ms, rings) => {
   return setTimeout(() => {
-    const audio = new Audio(`http://localhost:8080/sounds/bell${rings}.wav`)
+    const audio = new Audio(`${API_URL}/sounds/bell${rings}.wav`)
     audio.play()
   }, ms)
 }
 
 exports.setClickerTimer = (ms, clicker = 1) => {
   return setTimeout(() => {
-    const audio = new Audio(`http://localhost:8080/sounds/clicker${clicker}.wav`)
+    const audio = new Audio(`${API_URL}/sounds/clicker${clicker}.wav`)
     audio.play()
   }, ms)
 }

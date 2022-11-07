@@ -4,7 +4,8 @@ import axios from "axios"
 import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom} from "../../js/math-utils.js";
 import { useState } from "react";
 
-const API_URL = "http://localhost:8080"
+const API_URL = process.env.REACT_APP_SERVER_URL;
+
 export default function TestSuite() {
   //start with the test suite off
   const [showToggle, setShowToggle] = useState(false)
@@ -72,10 +73,10 @@ export default function TestSuite() {
       <button title="Rolls back all data to original files" className="test__button" onClick={handleRollBack}>Roll Back</button>
       <select title="check on axios calls" onChange={handleSelectChange}className="test__button" >
         <option>ABC API</option>
-        <option value="http://localhost:8080/boxers" >GET all boxers</option>
-        <option value="http://localhost:8080/combos" >GET all combos</option>
-        <option value="http://localhost:8080/actions" >GET all actions</option>
-        <option value="http://localhost:8080/actions" >GET all actions with types</option>
+        <option value={`${API_URL}/boxers`} >GET all boxers</option>
+        <option value={`${API_URL}/combos`} >GET all combos</option>
+        <option value={`${API_URL}/actions`} >GET all actions</option>
+        <option value={`${API_URL}/actions`} >GET all actions with types</option>
       </select>
       <button className="test__button">Autofill</button>
 
