@@ -18,3 +18,10 @@ exports.setSoundTimer = (ms, action) => {
     audio.play()
   }, ms + 1000)
 }
+
+exports.setBellTimer = (ms, rings) => {
+  return setTimeout(() => {
+    const audio = new Audio(`http://localhost:8080/sounds/bell${rings}.wav`)
+    audio.play()
+  }, ms)
+} 

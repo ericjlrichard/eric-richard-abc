@@ -26,17 +26,22 @@ export default function ActionSlider({round, userSettings}) {
     actions.push(setL1, setL2, setL3, setL4);
     actions.push(setR1, setR2, setR3, setR4);
 
+    console.log(round)
+
 
     let time = 0;
     let actionLeft = 0;
     let actionRight = 4;
 
     //set action map for sliding actions
-    round.forEach(action => {
+    round.round.forEach(action => {
       time += 250
       if (action === ".") {
-        
-      } else {
+        //wait 
+      } else if (action === "!") {
+        //Switching combos
+      }
+      else {
 
         let actionIndex = -1
         let actionClass = "";

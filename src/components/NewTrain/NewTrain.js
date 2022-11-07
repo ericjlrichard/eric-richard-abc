@@ -86,7 +86,10 @@ export default function NewTrain() {
   //swinging the workout to the PadBox, now it's their problem.
   return !!workout &&  (
     <div className="train__page">
-      <NewPadBox workout={workout} />
+      <div className="pads-container">
+        <NewPadBox workout={workout} />
+      </div>
+      
     </div>
   )
 }

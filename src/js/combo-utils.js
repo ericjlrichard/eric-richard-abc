@@ -190,8 +190,20 @@ export function translateComboString(comboString, actionsArray) {
   comboArray.forEach(code => {
     returnString += actionsArray.find(item => item.code === code).name + `(${code}), `
   })
-  console.log(comboArray)
-  console.log(actionsArray);
+  // console.log(comboArray)
+  // console.log(actionsArray);
 
   return returnString.slice(0, returnString.length-2);
+}
+
+//if the action is a pad action, return the pad number. Otherwise, return nothing for now
+export function determinePad(action) {
+  if (action === "1o" || action === "2o") {
+    return action[0]
+  } else if(!isNaN(action)) {
+    return action
+  } else {
+    return undefined
+  }
+  
 }
