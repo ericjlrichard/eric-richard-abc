@@ -1,11 +1,21 @@
-
+@use "../../styles/partials/media" as med;
 
 .about {
 
   padding-left: 1rem;
   padding-right: 1rem;
+
+  @include med.tablet {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include med.desktop {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
   &__img {
-    width: 100%;
+    width: 60%;
   }
   &__img-container {
     width: 100%;

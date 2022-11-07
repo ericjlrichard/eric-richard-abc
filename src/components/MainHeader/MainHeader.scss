@@ -6,6 +6,19 @@
 
 .header_menu {
 
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  @include med.tablet {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  @include med.desktop {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   &__hamburger-icon {
     width: 2rem;
     height: 2rem;

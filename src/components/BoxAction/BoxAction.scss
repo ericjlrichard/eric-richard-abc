@@ -1,6 +1,6 @@
 @use "../../styles/partials/anims" as anim;
-
 @use "../../styles/partials/colors" as color;
+@use "../../styles/partials/media" as med;
 
 .box-action {
   position: absolute;
@@ -26,6 +26,10 @@
 
     &--orthodox {
       margin-left: 80vw;
+
+      @include med.pad-break {
+        margin-left: 100px;
+      }
     }
   }
 
@@ -35,13 +39,21 @@
     &--orthodox {
       left: 0px;
     }
+
+    @include med.pad-break {
+      margin-left: 100px;
+    }
   }
 
   &--slide-left {
-    animation-name: slide-left;
+    animation-name: slide-left-mobile;
     animation-duration: 1s;
     animation-timing-function: linear;
     display: block;
+
+    @include med.pad-break {
+      animation-name: slide-left
+    }
   }
   
   &--slide-right {

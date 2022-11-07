@@ -5,13 +5,11 @@ import userUtils from "../../js/user-utils";
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
-export default function TrainModal({ showModal, clickClose, clickTrain }) {
+export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
   const [numSeconds, setNumSeconds] = useState(5);
   const [boxers, setBoxers] = useState(undefined);
   const [cancelTimer, setCancelTimer] = useState(false);
-  const [userSettings, setUserSettings] = useState(
-    userUtils.getSessionSettings()
-  );
+  const [userSettings, setUserSettings] = useState(undefined);
 
   useEffect(() => {
     axios
@@ -22,6 +20,8 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
       .catch((err) => {
         console.log(err);
       });
+
+      setUserSettings(userUtils.getSessionSettings())
   }, []);
 
   //each time numSeconds changes, we set another 1 second timer, unless the automatic start (cancelTimer) has been cancelled
@@ -74,6 +74,8 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
   };
 
   const handleSubmit = (event) => {
+
+    
     event.preventDefault();
     let userSettingsObj = {};
     userSettingsObj.stance = event.target.stance.value;
@@ -92,10 +94,7 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
 
     userSettingsObj.combosAll = event.target.combos.value
 
-    console.log(userSettingsObj)
-
     userUtils.setSessionSettings(userSettingsObj);
-    setUserSettings(userSettingsObj);
 
     clickTrain();
   };
@@ -105,9 +104,9 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
     setCancelTimer(true);
   };
 
-  return (
-    showModal &&
-    !!boxers && (
+  return showTrainModal &&
+  !!boxers && !!userSettings && (
+    
       <form
         className="modal"
         name="modalForm"
@@ -121,7 +120,7 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
             title="Close and return to main"
             onClick={clickClose}
           >
-            <button title="Not feeling beast mode today, close workout!">
+            <button className="modal__button--close" title="Not feeling beast mode today, close workout!">
               X
             </button>
           </div>
@@ -155,6 +154,7 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
               name="workoutDuration"
               type="number"
               placeholder="30"
+              defaultValue={userSettings.workoutDuration}
             ></input>{" "}
             minutes
             <br></br>Round Duration:
@@ -163,6 +163,7 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
               name="roundDuration"
               type="number"
               placeholder="180"
+              defaultValue={userSettings.roundDuration}
             ></input>{" "}
             seconds
           </div>
@@ -227,6 +228,6 @@ export default function TrainModal({ showModal, clickClose, clickTrain }) {
           {cancelTimer ? `I'm ready!` : `Starting in ${numSeconds} seconds`}
         </button>
       </form>
-    )
+    
   );
 }

@@ -76,7 +76,12 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
 export function createRandomRound(combosArray, type = "regular", duration = defaultRoundDuration ) {
   //we have a limit of 4 actions per second. For a three minutes round, so should be a maximum of 720 actions, including pauses
   const actionLimit = duration * 4;
-  const returnRound = []
+  const returnObj = {}
+
+  //we will store the used combos ID in combos, and the round instructions themselves in round
+  returnObj.combos = []
+  returnObj.round = []
+
   let combosArrayFiltered = []
   let combosUsed = []
 
@@ -94,34 +99,40 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
       combosArrayFiltered = combosArray;
   }
 
-  //We're gonna start with a 2 seconds padding.
-  padSeconds(returnRound, 2)
+  //2 seconds padding at round start
+  
+  padSeconds(returnObj.round, 2)
 
-  while(returnRound.length < actionLimit) {
+  while(returnObj.round.length < actionLimit) {
     const nextCombo = getRandom(combosArrayFiltered);
 
-    combosUsed.push(nextCombo)
+    //console.log ("comboutils", nextCombo)
+    returnObj.combos.push(nextCombo.id)
 
     const nextComboArray = nextCombo.combo_string.split(",");
 
-    returnRound.push(...padComboIncrements(nextComboArray, 4))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 4))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 2))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 2))
-    padSeconds(returnRound, 4)
-    returnRound.push(...padComboIncrements(nextComboArray, 1))
-    padSeconds(returnRound, 4)
-    returnRound.push(...nextComboArray)
-    padSeconds(returnRound, 4)
-    returnRound.push(...nextComboArray)
+    //switch combo indicator
+    returnObj.round.push("!")
+
+    returnObj.round.push(...padComboIncrements(nextComboArray, 4))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 4))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 2))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 2))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...padComboIncrements(nextComboArray, 1))
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...nextComboArray)
+    padSeconds(returnObj.round, 4)
+    returnObj.round.push(...nextComboArray)
  
-    padSeconds(returnRound, 4)
+    padSeconds(returnObj.round, 4)
   }
   
-  return returnRound;
+  returnObj.round = returnObj.round.slice(0, actionLimit)
+  return returnObj;
 }
 
 //adds pauses of "seconds" seconds. Doesn't take fractions into account.
@@ -144,7 +155,55 @@ function padComboIncrements(comboArray, increment) {
   return returnArray;
 }
 
-//will pad the combo according to speed (slow, medium, fast, extreme), also taking into account that slips and pulls are faster than ducks, for example.
+//Pad the combo according to speed (slow, medium, fast, extreme), also taking into account that slips and pulls are faster than ducks, for example.
 function smartPadCombo(speed) {
 
+}
+
+export function createWorkout (combosArray, workoutDuration, roundDuration, breakDuration) {
+
+  //determine how many seconds a round + break will last
+  const realRoundDuration = roundDuration + breakDuration;
+
+  const workoutArray = []
+
+  //determine number of rounds inside workoutDuration
+  const numberOfRounds = Math.floor((workoutDuration * 60) / realRoundDuration)
+
+  for(let i = 0; i< numberOfRounds; i++) {
+    workoutArray.push(createRandomRound(combosArray, "regular", roundDuration))
+  }
+
+  //for each number of rounds, create a round, add it to the workout object
+
+  //console.log(realRoundDuration, numberOfRounds)
+
+  console.log(workoutArray)
+  return workoutArray;
+}
+
+//translates a combo string (ex: 1,2,SL) into a more readable format (ex: jab, cross, Slip Lead)
+export function translateComboString(comboString, actionsArray) {
+  let returnString = "";
+  const comboArray = comboString.split(",")
+
+  comboArray.forEach(code => {
+    returnString += actionsArray.find(item => item.code === code).name + `(${code}), `
+  })
+  // console.log(comboArray)
+  // console.log(actionsArray);
+
+  return returnString.slice(0, returnString.length-2);
+}
+
+//if the action is a pad action, return the pad number. Otherwise, return nothing for now
+export function determinePad(action) {
+  if (action === "1o" || action === "2o") {
+    return action[0]
+  } else if(!isNaN(action)) {
+    return action
+  } else {
+    return undefined
+  }
+  
 }

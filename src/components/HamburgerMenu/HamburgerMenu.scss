@@ -1,9 +1,25 @@
 @use "../../styles/partials/colors" as color;
 @use "../../styles/partials/anims" as anim;
+@use "../../styles/partials/media" as med;
 
 .hamburger {
 
+  
+
+  &__divider {
+    width: 90%;
+    height: 5px;
+  
+    border-bottom: 1px solid color.$abc-black;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
   &__menu {
+
+    @include med.tablet {
+      display: none;
+    }
+  
     //just to get over that hero div
     z-index: 2;
 
@@ -17,7 +33,6 @@
     left: calc(100vw - 7.5rem);
     
     background-color: color.$abc-light;
-    color: color.$abc-light;
     border-color: color.$abc-nuanced;
     border-radius: 10px;
     display: flex;
@@ -29,6 +44,6 @@
   }
 
   &__link {
-    color: color.$abc-brown;
+    color: color.$abc-black;
   }
 }

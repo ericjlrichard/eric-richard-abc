@@ -1,4 +1,5 @@
 @use "./colors" as color;
+@use "./media" as med;
 
 @keyframes hamburger-appear {
   from {
@@ -21,14 +22,31 @@
   }
 }
 
+
+//now it doesn't work on mobile. maybe create two anims and @include in pad.scss, this is clearly not working, which is dumb.
 @keyframes slide-left {
   from {
-    margin-left: 80vw;
+
+    margin-left: 320px;
+
+    
   }
   to {
     margin-left: 45%;
   }
 }
+
+@keyframes slide-left-mobile {
+  from {
+
+    margin-left: 80vw;
+    
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+
 
 // || Action Slider
 
