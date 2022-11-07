@@ -12,6 +12,8 @@ import Pad from "../Pad/Pad"
 import ActionSlider from "../ActionSlider/ActionSlider"
 import PadBar from "../PadBar/PadBar"
 
+import WorkOutEnd from "../WorkoutEnd/WorkoutEnd"
+
 import { setPadAnimWithReset } from "../../js/time-anim-utils"
 import { setBellTimer, setSoundTimer, setClickerTimer } from "../../js/sound-utils"
 
@@ -29,6 +31,7 @@ export default function NewPadBox({workout}) {
   const [combosArray, setCombosArray] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
   const [currentCombo, setCurrentCombo] = useState(undefined)
+  const [workoutEnd, setWorkoutEnd] = useState(true);
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")
@@ -155,6 +158,7 @@ export default function NewPadBox({workout}) {
     setTimeout(() => {
       if ((roundIndex + 1) === workout.length) {
         //End Workout
+        setWorkoutEnd(true)
       } else {
         setRoundIndex(roundIndex+1)
         setShowRoundModal(true)
@@ -165,7 +169,6 @@ export default function NewPadBox({workout}) {
   }
 
   // ##### End Modal Functions
-
 
   //Until we're set up, don't go any further
   while(!userSettings || (roundIndex === undefined) || !boxersArray || !combosArray || !actionsArray) {
@@ -195,6 +198,16 @@ export default function NewPadBox({workout}) {
       </div>
     )
   }
+
+
+  //workout completed, congrats!
+  if (workoutEnd) {
+
+    return (
+      <WorkOutEnd />
+    )
+  }
+
 
   return (
       <>

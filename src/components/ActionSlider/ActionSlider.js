@@ -31,9 +31,6 @@ export default function ActionSlider({round, userSettings}) {
     actions.push(setL1, setL2, setL3, setL4);
     actions.push(setR1, setR2, setR3, setR4);
 
-    console.log("action slider", round)
-
-
     let time = 0;
     let actionLeft = 0;
     let actionRight = 4;
