@@ -28,7 +28,6 @@ export default function NewPadBox({workout}) {
   const [boxersArray, setBoxersArray] = useState(undefined)
   const [combosArray, setCombosArray] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
-  const [soundTimeouts, setSoundTimeouts] = useState([1, 2])
   const [currentCombo, setCurrentCombo] = useState(undefined)
 
   const [padState1, setPadState1] = useState ("fadein")
@@ -139,7 +138,7 @@ export default function NewPadBox({workout}) {
       }
 
       //set the warning for end of round at 10 secs to end.
-      if (((userSettings.roundDuration * 1000) - time) === 10000) {
+      if ((userSettings.sounds) && (((userSettings.roundDuration * 1000) - time) === 10000)) {
         localSoundTimeouts.push(setClickerTimer(time))
       }
 
