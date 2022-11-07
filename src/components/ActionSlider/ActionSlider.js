@@ -22,6 +22,11 @@ export default function ActionSlider({round, userSettings}) {
   const [r4, setR4] = useState({action: "", anim: "rest"})
 
   useEffect(() => {
+
+    //emptying actions
+    while(actions.length > 0) {
+      actions.pop();
+    }
     
     actions.push(setL1, setL2, setL3, setL4);
     actions.push(setR1, setR2, setR3, setR4);
@@ -35,7 +40,7 @@ export default function ActionSlider({round, userSettings}) {
 
     //set action map for sliding actions
     round.round.forEach(action => {
-      time += 250
+      
       if (action === ".") {
         //wait 
       } else if (action === "!") {
@@ -58,6 +63,9 @@ export default function ActionSlider({round, userSettings}) {
 
         setActionAnimWithReset(actions[actionIndex], renderAction(action), actionClass, time, "rest")
       }
+
+      time += 250
+
     } )
 
   }, [])
