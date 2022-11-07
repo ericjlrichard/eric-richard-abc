@@ -188,7 +188,7 @@ export function translateComboString(comboString, actionsArray) {
   const comboArray = comboString.split(",")
 
   comboArray.forEach(code => {
-    returnString += actionsArray.find(item => item.code === code).name + `(${code}), `
+    returnString += actionsArray.find(item => item.code === code).name + ` (${code}), `
   })
   // console.log(comboArray)
   // console.log(actionsArray);

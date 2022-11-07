@@ -11,7 +11,7 @@ export function setIntervalWithStop(func, interval, intervalDuration) {
 
 //starts anim with text "action" and "setAnimState" function after "delay", resets to "restClass", after "delayRest"
 export function setActionAnimWithReset(setAnimState, action, animClass, delay, restClass) {
-  console.log("setactionanimwithreset", action)
+
   setTimeout(() => {
     setAnimState({action: action, anim:animClass})
   }, delay)
