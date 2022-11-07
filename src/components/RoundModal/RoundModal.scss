@@ -19,6 +19,9 @@
   }
 
   &__timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: color.$abc-light;
     border-radius: 50%;
     width: 40px;

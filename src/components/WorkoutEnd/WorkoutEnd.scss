@@ -1,0 +1,27 @@
+@use "../../styles/partials/fonts";
+@use "../../styles/partials/colors" as color;
+@use "../../styles/partials/anims";
+
+.workout-end {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: "MoviePoster";
+    font-size: 4.5rem;
+    letter-spacing: 0.5rem;
+    color: color.$abc-nuanced;
+    margin-bottom: 0.5rem;
+  }
+
+  &__img {
+    width: 350px;
+    margin-top: 10px;
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear; 
+  }
+}
