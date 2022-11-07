@@ -19,6 +19,8 @@ import {determinePad } from "../../js/combo-utils"
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"
 
+const localSoundTimeouts = [];
+
 export default function NewPadBox({workout}) {
   const [showRoundModal, setShowRoundModal] = useState(true)
   const [roundIndex, setRoundIndex] = useState(undefined)
@@ -26,7 +28,7 @@ export default function NewPadBox({workout}) {
   const [boxersArray, setBoxersArray] = useState(undefined)
   const [combosArray, setCombosArray] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
-  const [soundTimeouts, setSoundTimeouts] = useState([])
+  const [soundTimeouts, setSoundTimeouts] = useState([1, 2])
   const [currentCombo, setCurrentCombo] = useState(undefined)
 
   const [padState1, setPadState1] = useState ("fadein")
@@ -84,16 +86,15 @@ export default function NewPadBox({workout}) {
 
   useEffect(() => () => {
 
-  console.log("Hello")
-  //clears out the sounds
-  if(soundTimeouts) {
-    soundTimeouts.forEach(sound => {
-      clearTimeout(sound)
-    })
-    setSoundTimeouts([])
-  }
+    //clears out the sounds
+    if(localSoundTimeouts) {
+      localSoundTimeouts.forEach(sound => {
+        clearTimeout(sound)
+      })
+      
+    }
 
-}, [])
+  }, [])
 
   // ##### Modal Functions
 
@@ -101,17 +102,13 @@ export default function NewPadBox({workout}) {
   const clickStartNow = (event) => {
     setShowRoundModal(false)
 
-    //console.log("start now", workout[roundIndex])
-
     let time = 0;
     let comboIndex=0;
     let comboObj= {}
-    //console.log("start now", combosArray)
 
     if(userSettings.sounds) {
-      setBellTimer(time, 1);
+      localSoundTimeouts.push(setBellTimer(time, 1));
     }
-    
 
     workout[roundIndex].round.forEach(action => {
       if(action === ".") {
@@ -133,7 +130,7 @@ export default function NewPadBox({workout}) {
           setPadAnimWithReset(padStatesFunc[Number(padNumber - 1)], "hit", time, "rest")
 
           if(userSettings.sounds) {
-            soundTimeouts.push(setSoundTimer(time, padNumber))
+            localSoundTimeouts.push(setSoundTimer(time, padNumber))
           }
 
         } else {
@@ -141,21 +138,19 @@ export default function NewPadBox({workout}) {
         }
       }
 
-      //set the warning clicker timer at 10 secs to end.
+      //set the warning for end of round at 10 secs to end.
       if (((userSettings.roundDuration * 1000) - time) === 10000) {
-        soundTimeouts.push(setClickerTimer(time))
+        localSoundTimeouts.push(setClickerTimer(time))
       }
 
       //in any case, the beat goes on.
       time += 250
     })
 
+    //end of round bell
     if (userSettings.sounds) {
-      setBellTimer(time, 3);
+      localSoundTimeouts.push(setBellTimer(time, 3));
     }
-
-    console.log(soundTimeouts)
-    setSoundTimeouts(soundTimeouts)
     
 
     setTimeout(() => {
