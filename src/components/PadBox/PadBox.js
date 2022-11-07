@@ -9,6 +9,7 @@ import { createRandomRound, createWorkout } from "../../js/combo-utils";
 import { setSoundTimer } from "../../js/sound-utils";
 
 import ActionSlider from "../ActionSlider/ActionSlider";
+import PadBar from "../PadBar/PadBar";
 
 const restingPadStates = [];
 for (let i = 0; i < 12; i++) {
@@ -105,6 +106,7 @@ export default function PadBox({roundIndex, setRoundIndex, userSettings, actions
 
   return !!round && !!soundTimeouts && !!userSettings && (
     <div className="pad-box">
+      <PadBar roundNumber={roundIndex+1} currentCombo={1} />
       <Pad userSettings={userSettings} orientation="vertical" number="1" padState={padState1} />
       <Pad userSettings={userSettings} orientation="vertical" number="2" padState={padState2}/>
       <Pad userSettings={userSettings} orientation="horizontal" number="3" padState={padState3}/>

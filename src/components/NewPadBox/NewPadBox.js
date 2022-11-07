@@ -10,9 +10,10 @@ import axios from "axios";
 
 import Pad from "../Pad/Pad"
 import ActionSlider from "../ActionSlider/ActionSlider"
+import PadBar from "../PadBar/PadBar"
 
 import { setPadAnimWithReset } from "../../js/time-anim-utils"
-import { setBellTimer, setSoundTimer } from "../../js/sound-utils"
+import { setBellTimer, setSoundTimer, setClickerTimer } from "../../js/sound-utils"
 
 import {determinePad } from "../../js/combo-utils"
 
@@ -26,6 +27,7 @@ export default function NewPadBox({workout}) {
   const [combosArray, setCombosArray] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
   const [soundTimeouts, setSoundTimeouts] = useState([])
+  const [currentCombo, setCurrentCombo] = useState(undefined)
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")
@@ -98,14 +100,17 @@ export default function NewPadBox({workout}) {
   const clickStartNow = (event) => {
     setShowRoundModal(false)
 
-    console.log("start now", workout[roundIndex])
+    //console.log("start now", workout[roundIndex])
 
     let time = 0;
     let comboIndex=0;
     let comboObj= {}
-    console.log("start now", combosArray)
+    //console.log("start now", combosArray)
 
-    setBellTimer(time, 1);
+    if(userSettings.sounds) {
+      setBellTimer(time, 1);
+    }
+    
 
     workout[roundIndex].round.forEach(action => {
       if(action === ".") {
@@ -113,8 +118,8 @@ export default function NewPadBox({workout}) {
       } else if (action === "!") {
         //combo switch
         setTimeout(() => {
-          comboObj = 
-          console.log("next combo: ", comboIndex, combosArray.find(item => item.id === workout[roundIndex].combos[comboIndex]))
+          comboObj = combosArray.find(item => item.id === workout[roundIndex].combos[comboIndex])
+          setCurrentCombo(comboObj)
           comboIndex++;
         }, time)
         
@@ -135,11 +140,21 @@ export default function NewPadBox({workout}) {
         }
       }
 
+      //set the warning clicker timer at 10 secs to end.
+      if (((userSettings.roundDuration * 1000) - time) === 10000) {
+        soundTimeouts.push(setClickerTimer(time))
+      }
+
       //in any case, the beat goes on.
       time += 250
     })
 
-    setBellTimer(time, 3);
+    if (userSettings.sounds) {
+      setBellTimer(time, 3);
+    }
+
+    setSoundTimeouts(soundTimeouts)
+    
 
     setTimeout(() => {
       if ((roundIndex + 1) === workout.length) {
@@ -150,10 +165,7 @@ export default function NewPadBox({workout}) {
       }
       
     }, time)
-    // setPadAnimWithReset(padStatesFunc[0], "hit", 1000, "rest")
-
-    // setPadAnimWithReset(padStatesFunc[6], "hit", 5000, "rest")
-    // setSoundTimer(1000, 1)
+    
   }
 
   // ##### End Modal Functions
@@ -189,8 +201,10 @@ export default function NewPadBox({workout}) {
   }
 
   return (
-    
+      <>
+      <PadBar roundNumber={roundIndex+1} currentCombo={currentCombo} actionsArray={actionsArray} roundTime={userSettings.roundDuration} />
       <div className="pad-box">
+      
       <Pad userSettings={userSettings} orientation="vertical" number="1" padState={padState1} />
       <Pad userSettings={userSettings} orientation="vertical" number="2" padState={padState2}/>
       <Pad userSettings={userSettings} orientation="horizontal" number="3" padState={padState3}/>
@@ -208,6 +222,6 @@ export default function NewPadBox({workout}) {
       <Pad userSettings={userSettings} orientation="vertical" number="12" padState={padState12}/>
 
     </div>
-    
+    </>
   )
 }

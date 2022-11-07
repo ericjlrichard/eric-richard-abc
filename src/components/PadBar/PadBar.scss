@@ -1,0 +1,26 @@
+@use "../../styles/partials/fonts";
+@use "../../styles/partials/colors" as color;
+
+.pad-bar {
+
+  //border: 1px solid coral;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 360px;
+  margin-bottom: 10px;
+
+  &__round-number {
+    width: 20%;
+  }
+
+  &__combo {
+    width: 70%;
+    color: color.$abc-grey;
+  }
+
+  &__timer {
+    background-color: color.$abc-black;
+    width:10%;
+  }
+}
