@@ -178,7 +178,7 @@ export function createWorkout (combosArray, workoutDuration, roundDuration, brea
 
   //console.log(realRoundDuration, numberOfRounds)
 
-  console.log(workoutArray)
+  //console.log(workoutArray)
   return workoutArray;
 }
 

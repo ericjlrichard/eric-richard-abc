@@ -24,4 +24,11 @@ exports.setBellTimer = (ms, rings) => {
     const audio = new Audio(`http://localhost:8080/sounds/bell${rings}.wav`)
     audio.play()
   }, ms)
-} 
+}
+
+exports.setClickerTimer = (ms, clicker = 1) => {
+  return setTimeout(() => {
+    const audio = new Audio(`http://localhost:8080/sounds/clicker${clicker}.wav`)
+    audio.play()
+  }, ms)
+}
