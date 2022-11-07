@@ -1,0 +1,12 @@
+@use "../../styles/partials/fonts" as font;
+@use "../../styles/partials/colors" as color;
+
+.timer {
+  font-family: "Technology";
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+
+  &--warning {
+    color: color.$abc-red;
+  }
+}
