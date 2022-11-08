@@ -19,16 +19,15 @@ import { setBellTimer, setSoundTimer, setClickerTimer } from "../../js/sound-uti
 
 import {determinePad } from "../../js/combo-utils"
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8080"
 
 const localSoundTimeouts = [];
 
-export default function NewPadBox({workout}) {
+export default function NewPadBox({workout, combosArray}) {
   const [showRoundModal, setShowRoundModal] = useState(true)
   const [roundIndex, setRoundIndex] = useState(undefined)
   const [userSettings, setUserSettings] = useState(undefined)
   const [boxersArray, setBoxersArray] = useState(undefined)
-  const [combosArray, setCombosArray] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
   const [currentCombo, setCurrentCombo] = useState(undefined)
   const [workoutEnd, setWorkoutEnd] = useState(false);
@@ -57,7 +56,6 @@ export default function NewPadBox({workout}) {
   
         axios.get(`${API_URL}/combos`)
         .then(res => {
-          setCombosArray(res.data)
           
           axios.get(`${API_URL}/actions`)
           .then(res => {

@@ -14,7 +14,7 @@ export default function RandomCombo({combosArray, round, actionsArray, boxersArr
           {translateComboString(featuredCombo.combo_string, actionsArray)}
           
           
-          <img className="round-modal__img" src={require("../../assets/" + boxersArray.find(item => item.id === featuredCombo.boxer_id).img)} alt="Boxer Profile" />
+          <img className="round-modal__img" src={require("../../assets/" + boxersArray.find(item => item.id === featuredCombo.boxer_id).img)} alt="Boxer Profile" title={boxersArray.find(item => item.id === featuredCombo.boxer_id).description} />
 
         </div>
   )

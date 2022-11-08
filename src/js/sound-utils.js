@@ -1,7 +1,7 @@
 
 //returns the timeout id
 
-const API_URL = process.env.REACT_APP_SERVER_URL;
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8080"
 
 exports.setSoundTimer = (ms, action) => {
 
