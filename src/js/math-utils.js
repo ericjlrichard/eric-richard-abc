@@ -35,8 +35,11 @@ export function getSkewedRandom(array, skewedIndexesArray, skewPercentage) {
 
 //very similar to getSkewedRandom, but the unskewed and skewed array are already separated
 export function getSkewedFromArrays(unSkewedArray, skewedArray, skewPercentage) {
-
+  console.log("unskewed: ", unSkewedArray)
+  console.log("skewed: ", skewedArray)
+  
   return getRandomPercentage() <= skewPercentage ? getRandom(skewedArray) : getRandom(unSkewedArray)
+  
 }
 
 //makes sure that an array roughly respects the randomization rules. Returns a string that's a "report" of sorts

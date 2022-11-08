@@ -1,7 +1,11 @@
 import "./TestSuite.scss"
 
-import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom} from "../../js/math-utils.js";
+import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom, getSkewedFromArrays} from "../../js/math-utils.js";
 import { useState } from "react";
+
+import { createRandomCombo } from "../../js/combo-utils";
+
+import axios from "axios";
 
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8080"
 
@@ -20,6 +24,8 @@ export default function TestSuite() {
   
   const handleClickRandom =(event) => {
     const testArray=["a","b","c","d","e","f","g","h","i","j"]
+    const testArraySkewed=["a", "b", "c"];
+    const testArrayUnSkewed=["d","e","f","g","h","i","j"]
     const numTests = 1000;
     let resultsArray = []
 
@@ -55,6 +61,28 @@ export default function TestSuite() {
 
     console.log("Random from 2 to 7", resultsArray)
     console.log("Random range - analysis", checkRandomizer([2, 3, 4, 5, 6, 7], resultsArray))
+
+    resultsArray = []
+    console.log("testing getSkewedFromArrays...")
+
+    for (let i=0; i < 1000; i++) {
+      resultsArray.push(getSkewedFromArrays(testArrayUnSkewed, testArraySkewed, 90 ))
+    }
+
+    console.log("skewedFromArrays at 90%", checkRandomizer(testArray, resultsArray))
+  }
+
+  const handleClickRandomCombo = () => {
+    axios.get(`${API_URL}/actionswithtypes`)
+    .then(res => {
+    
+      const actions = res.data
+
+      console.log(createRandomCombo(actions, 2, 2))
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   const handleClickShow = (event) => {
@@ -80,6 +108,8 @@ export default function TestSuite() {
       <button className="test__button">Autofill</button>
 
       <button className="test__button" onClick={handleClickRandom}>Random</button>
+
+      <button className="test__button" onClick={handleClickRandomCombo}>Test Random Combo</button>
       
     </div>
     
