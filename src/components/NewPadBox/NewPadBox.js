@@ -1,3 +1,4 @@
+import "./NewPadBox.scss";
 import { useState, useEffect } from "react"
 import userUtils from "../../js/user-utils"
 import Loading from "../Loading/Loading"
