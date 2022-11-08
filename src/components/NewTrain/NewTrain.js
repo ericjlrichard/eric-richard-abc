@@ -3,7 +3,7 @@ import "./NewTrain.scss";
 
 import { useState, useEffect } from "react"; 
 import TrainModal from "../TrainModal/TrainModal"
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import userUtils from "../../js/user-utils.js"
 import Loading from "../Loading/Loading";
@@ -18,6 +18,8 @@ export default function NewTrain() {
   const [workout, setWorkout] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
   const [combosArray, setCombosArray] = useState(undefined)
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/actionswithtypes`)
@@ -42,7 +44,7 @@ export default function NewTrain() {
 
   // ##### Train Modal events
   const clickClose = (event) => {
-    Navigate("/")
+    navigate("/")
   }
 
   const clickTrain = (event) => {
@@ -55,7 +57,6 @@ export default function NewTrain() {
 
   // ##### Train Modal events end
 
-  //Am I dumb? Is this dumb? It seems to make the most sense, it's like a fake async/await kinda thing... I dunno, at the same time it feels fucking sketch. OTOH I ain't lying I AM loading combos and actions. And await async is just a glorified while loop anyway...
   while (!combosArray || !actionsArray) {
     return (
       <div className="modal__container">
@@ -83,7 +84,7 @@ export default function NewTrain() {
     )
   }
 
-  //swinging the workout to the PadBox, now it's their problem.
+  //swinging the workout to the PadBox, it's their problem now.
   return !!workout &&  (
     <div className="train__page">
       <div className="pads-container">
