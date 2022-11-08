@@ -83,7 +83,6 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
   returnObj.round = []
 
   let combosArrayFiltered = []
-  let combosUsed = []
 
   switch(type) {
     case "warmup":
@@ -106,7 +105,6 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
   while(returnObj.round.length < actionLimit) {
     const nextCombo = getRandom(combosArrayFiltered);
 
-    //console.log ("comboutils", nextCombo)
     returnObj.combos.push(nextCombo.id)
 
     const nextComboArray = nextCombo.combo_string.split(",");
@@ -174,11 +172,6 @@ export function createWorkout (combosArray, workoutDuration, roundDuration, brea
     workoutArray.push(createRandomRound(combosArray, "regular", roundDuration))
   }
 
-  //for each number of rounds, create a round, add it to the workout object
-
-  //console.log(realRoundDuration, numberOfRounds)
-
-  //console.log(workoutArray)
   return workoutArray;
 }
 
@@ -190,8 +183,6 @@ export function translateComboString(comboString, actionsArray) {
   comboArray.forEach(code => {
     returnString += actionsArray.find(item => item.code === code).name + ` (${code}), `
   })
-  // console.log(comboArray)
-  // console.log(actionsArray);
 
   return returnString.slice(0, returnString.length-2);
 }

@@ -1,10 +1,9 @@
 import "./TestSuite.scss"
-import axios from "axios"
 
 import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom} from "../../js/math-utils.js";
 import { useState } from "react";
 
-const API_URL = process.env.REACT_APP_SERVER_URL;
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8080"
 
 export default function TestSuite() {
   //start with the test suite off
