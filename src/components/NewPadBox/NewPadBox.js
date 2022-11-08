@@ -31,7 +31,7 @@ export default function NewPadBox({workout}) {
   const [combosArray, setCombosArray] = useState(undefined)
   const [actionsArray, setActionsArray] = useState(undefined)
   const [currentCombo, setCurrentCombo] = useState(undefined)
-  const [workoutEnd, setWorkoutEnd] = useState(true);
+  const [workoutEnd, setWorkoutEnd] = useState(false);
 
   const [padState1, setPadState1] = useState ("fadein")
   const [padState2, setPadState2] = useState ("fadein")

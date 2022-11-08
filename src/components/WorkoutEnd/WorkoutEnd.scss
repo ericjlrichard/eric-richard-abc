@@ -1,27 +1,67 @@
 @use "../../styles/partials/fonts";
 @use "../../styles/partials/colors" as color;
 @use "../../styles/partials/anims";
+@use "../../styles/partials/media" as med;
 
 .workout-end {
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 
   &__title {
     font-family: "MoviePoster";
-    font-size: 4.5rem;
-    letter-spacing: 0.5rem;
+    font-size: 10vw;
+    margin-bottom: 0rem;
+    letter-spacing: 1.5vw;
     color: color.$abc-nuanced;
-    margin-bottom: 0.5rem;
+
+    @include med.tablet {
+      
+      font-size: 4.5rem;
+      letter-spacing: 0.5rem;
+      
+      
+    }
+    
   }
 
   &__img {
-    width: 350px;
-    margin-top: 10px;
+
+    width: 90%;
+    margin-top: 10vw;
+
+    @include med.tablet {
+      width: 350px;
+      margin-top: 30px;
+    }
+    
     animation-name: spin;
     animation-duration: 2s;
     animation-iteration-count: 1;
-    animation-timing-function: linear; 
+    animation-timing-function: linear;
+  }
+
+  &__link {
+    width: 90%;
+  }
+
+  &__button {
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: color.$abc-green;
+    color: color.$abc-light;
+    text-transform: uppercase;
+    border: 2px solid color.$abc-light;
+    margin-top: 20px;
+
+    cursor: pointer;
+
+    &--close {
+      cursor: pointer;
+    }
+    
   }
 }

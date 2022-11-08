@@ -40,7 +40,9 @@ export default function RoundModal({round, showRoundModal, roundIndex, clickStar
         </div>
         <div className="round-modal__divider"></div>
         <RandomCombo featuredCombo={featuredCombo} boxersArray={boxersArray} combosArray={combosArray} round={round} actionsArray={actionsArray} />
+        <button onClick={clickStartNow} className="round-modal__button">Start Now!</button>
       </div>
+      
     </div>
   )
 }
