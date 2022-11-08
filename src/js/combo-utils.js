@@ -38,6 +38,21 @@ export function getActionsOfCombinedType(arrayActions, arrayTypes) {
   return returnArray;
 }
 
+//
+function getNextActionSide(action) {
+  console.log("getnextactionside", action)
+
+  //If it's a Slip or Duck, we should return a same side action: Slip to the right, punch with the right
+  //If it's a block however, makes sense to block with the left and strike with the right
+  if ((action.types.indexOf("defense") >= 0) && ((action.code[0] !== "B"))) {
+    
+    return action.types.indexOf("rear") >= 0 ? "rear" : "lead"
+  } else {
+    return action.types.indexOf("rear") >= 0 ? "lead" : "rear"
+  }
+  
+}
+
 //creates a combo of min to max actions, using the included actions.
 //alternateSide makes sure that after say an action on the left, an action on the right happens most times (say 95% of the time)
 export function createRandomCombo(actionsArray, min, max, alternateSide = true) {
@@ -52,14 +67,21 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
       returnCombo.push(nextAction)
     } else {
       if (alternateSide) {
+        console.log("alternateSide yass")
         //first getting the previous action and checking on which side it is
+
+        //no way this is working correctly, the random combos have way too many same side actions.
         const previousAction = returnCombo[i-1]
-        if (previousAction.types.indexOf("lead") >= 0) {
-          //A normal combo sometimes has defense in it but I'd say about 90% offense. Could eventually be slideable.
-          returnCombo.push(getSkewedFromArrays(getActionsOfCombinedType(actionsArray, ["rear", "defense"]), getActionsOfAnyType(actionsArray, ["lead", "offense"]), 98))
-        } else {
-          returnCombo.push(getSkewedFromArrays(getActionsOfCombinedType(actionsArray, ["lead", "defense"]), getActionsOfAnyType(actionsArray, ["rear", "offense"]), 99))
-        }
+
+        console.log("previous action is", previousAction)
+
+        const nextActionSide = getNextActionSide(previousAction);
+
+        const previousActionSide = previousAction.types.indexOf("lead") >= 0 ? "lead" : "rear";
+
+        //Eight times out of ten (80%), if the previous action was an attack or a block, we will chain an attack from the other side. If it was a slip or duck, we will chain an attach from the same side.
+        returnCombo.push(getSkewedFromArrays(getActionsOfAnyType(actionsArray, [previousActionSide, "defense"]), getActionsOfCombinedType(actionsArray, [nextActionSide, "offense"]), 80))
+        
 
       } else {
         //completely random combo
@@ -74,7 +96,7 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
 //type: warmup, regular, cooldown, punchout (say, 1-2-1-2-1-2-3-4 in rapid succession)
 //duration: in seconds, defaulted in .env to 180 = 3 minutes
 export function createRandomRound(combosArray, type = "regular", duration = defaultRoundDuration ) {
-  //we have a limit of 4 actions per second. For a three minutes round, so should be a maximum of 720 actions, including pauses
+  //we have a limit of 4 actions per second. For a three minutes round, that should be a maximum of 720 actions, including pauses
   const actionLimit = duration * 4;
   const returnObj = {}
 
@@ -112,6 +134,7 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
     //switch combo indicator
     returnObj.round.push("!")
 
+    //TD This should be a function...
     returnObj.round.push(...padComboIncrements(nextComboArray, 4))
     padSeconds(returnObj.round, 4)
     returnObj.round.push(...padComboIncrements(nextComboArray, 4))

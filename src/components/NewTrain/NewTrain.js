@@ -70,7 +70,7 @@ export default function NewTrain() {
 
     if (userSettings.combos.indexOf(boxerRandom.id.toString()) >= 0) {
 
-      //add random combos, approximately the same number as the other boxers, with a minimum of 7
+      //add random combos, approximately the same number as the other boxers, with a minimum of 7 if there aren't enough boxers
       const randomCombosNb = Math.floor(combosArrayFiltered.length / userSettings.combos.length) || 7
       for(let i = 0; i < randomCombosNb; i++) {
 
