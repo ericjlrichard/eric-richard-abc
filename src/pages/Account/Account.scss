@@ -1,0 +1,46 @@
+@use "../../styles/partials/media" as med;
+@use "../../styles/partials/colors" as color;
+
+
+.account {
+  margin: 10px;
+  //border: 1px solid color.$abc-white;
+
+  @include med.tablet {
+    margin: 50px;
+  }
+
+  @include med.desktop {
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  &__signup-form {
+    display: flex;
+    flex-direction:column;
+  }
+
+  &__form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: color.$abc-green;
+    color: color.$abc-light;
+    text-transform: uppercase;
+    border: 2px solid color.$abc-nuanced;
+    margin-top: 10px;
+
+    cursor: pointer;
+
+    &--close {
+      cursor: pointer;
+    }
+  }
+}
+

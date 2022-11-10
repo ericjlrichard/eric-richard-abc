@@ -89,11 +89,23 @@ export default function TestSuite() {
     setShowToggle(!showToggle)
   }
 
+  const handleClickAutoFill = (event) => {
+    const signupForm = document.getElementById("signup-form");
+
+    if (signupForm) {
+      signupForm.handle.value = "SteveTheHammer"
+      signupForm.email.value = "steve@thehammer.com"
+      signupForm.password.value = "SteveTheHammer"
+      signupForm["confirm-password"].value = "SteveTheHammer"
+    }
+  }
+
   if (!showToggle) {
     return (
       <div className="test--hide" onClick={handleClickShow}>Show</div>
     )
   }
+
   return (
     <div className="test">
       <div onClick={handleClickShow}>Hide</div>
@@ -105,11 +117,11 @@ export default function TestSuite() {
         <option value={`${API_URL}/actions`} >GET all actions</option>
         <option value={`${API_URL}/actions`} >GET all actions with types</option>
       </select>
-      <button className="test__button">Autofill</button>
+      <button className="test__button" onClick={handleClickAutoFill}>Autofill</button>
 
-      <button className="test__button" onClick={handleClickRandom}>Random</button>
+      <button className="test__button" onClick={handleClickRandom}>Maths Check</button>
 
-      <button className="test__button" onClick={handleClickRandomCombo}>Test Random Combo</button>
+      <button className="test__button" onClick={handleClickRandomCombo}>Random Combo</button>
       
     </div>
     

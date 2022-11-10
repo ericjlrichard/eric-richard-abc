@@ -35,3 +35,7 @@ REACT_APP_DEFAULT_ROUND_DURATION=180
 Make sure the [ABC-API](https://github.com/ericjlrichard/eric-richard-abc) is running.
 
 In a terminal console, run the command "npm start".
+
+![Congratulations](src/assets/images/readme/congrats.png)
+
+Enjoy!
