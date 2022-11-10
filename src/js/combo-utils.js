@@ -40,7 +40,6 @@ export function getActionsOfCombinedType(arrayActions, arrayTypes) {
 
 //
 function getNextActionSide(action) {
-  console.log("getnextactionside", action)
 
   //If it's a Slip or Duck, we should return a same side action: Slip to the right, punch with the right
   //If it's a block however, makes sense to block with the left and strike with the right
@@ -67,19 +66,15 @@ export function createRandomCombo(actionsArray, min, max, alternateSide = true) 
       returnCombo.push(nextAction)
     } else {
       if (alternateSide) {
-        console.log("alternateSide yass")
         //first getting the previous action and checking on which side it is
 
-        //no way this is working correctly, the random combos have way too many same side actions.
         const previousAction = returnCombo[i-1]
-
-        console.log("previous action is", previousAction)
 
         const nextActionSide = getNextActionSide(previousAction);
 
         const previousActionSide = previousAction.types.indexOf("lead") >= 0 ? "lead" : "rear";
 
-        //Eight times out of ten (80%), if the previous action was an attack or a block, we will chain an attack from the other side. If it was a slip or duck, we will chain an attach from the same side.
+        //Eight times out of ten (80%), if the previous action was an attack or a block, we will chain an attack from the other side. If it was a slip or duck, we will chain an attack from the same side.
         returnCombo.push(getSkewedFromArrays(getActionsOfAnyType(actionsArray, [previousActionSide, "defense"]), getActionsOfCombinedType(actionsArray, [nextActionSide, "offense"]), 80))
         
 

@@ -20,7 +20,7 @@ in the "eric-richard-abc" folder, run "npm install" to install all dependencies
 
 ## Dependencies
 
-These should include sass, axios and react-router-dom
+These should include sass, axios and react-router-dom.
 
 ## .env
 
@@ -29,6 +29,10 @@ The .env file should include the following variables:
 REACT_APP_SERVER_URL="http://localhost:8080" (or current address of your eric-richard-abc-api server)
 
 REACT_APP_DEFAULT_ROUND_DURATION=180
+
+REACT_APP_SECRET_KEY="ImNotTellingYouWhatTheSessionSecretIs"
+
+The `REACT_APP_SECRET_KEY` variable can be anything, but make sure it matches `SESSION_SECRET` on the server side.
 
 # Running ABC
 
