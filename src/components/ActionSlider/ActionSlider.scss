@@ -1,0 +1,12 @@
+@use "../../styles/partials/media" as med;
+
+.slider {
+  position: relative;
+  top: 47vw;
+
+  height: 30px;
+
+  @include med.pad-break {
+    top: 200px;
+  }
+}

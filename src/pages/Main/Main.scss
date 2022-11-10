@@ -1,0 +1,48 @@
+@use "../../styles/partials/_colors.scss" as color;
+@use  "../../styles/partials/_fonts.scss";
+@use "../../styles/partials/media" as med;
+
+.main {
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 150px;
+
+  @include med.tablet {
+    height: 300px;
+
+  }
+
+  &__hero {
+    position:absolute;
+    top:0;
+    left:0;
+    background-image: url("../../assets/images/mobile_splash.png");
+    background-position:top;
+    background-size: cover;
+    opacity: 40%;
+    width: 100%;
+    height: 150px;
+
+    @include med.tablet {
+      height: 300px;
+
+    }
+  }
+
+  &__prompt {
+    z-index: 1;
+    color: color.$abc-white;
+    font-family: "MoviePoster";
+    font-size: 10vw;
+
+    @include med.tablet {
+      font-size: 4rem;
+    }
+  }
+}

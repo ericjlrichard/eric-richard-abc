@@ -1,0 +1,33 @@
+@use "../../styles/partials/media" as med;
+
+.about {
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include med.tablet {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include med.desktop {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
+  &__img {
+    width: 60%;
+  }
+  &__img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  &__img-caption {
+    font-size: .7rem;
+  }
+}

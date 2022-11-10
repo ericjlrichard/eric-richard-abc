@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "MoviePoster";
+  src: url("../../assets/fonts/Movie Poster Personal Use.ttf") format("woff2");
+  font-weight: 400;
+}
+.main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+}
+@media screen and (min-width: 768px) {
+  .main {
+    height: 300px;
+  }
+}
+.main__hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("../../assets/images/mobile_splash.png");
+  background-position: top;
+  background-size: cover;
+  opacity: 40%;
+  width: 100%;
+  height: 150px;
+}
+@media screen and (min-width: 768px) {
+  .main__hero {
+    height: 300px;
+  }
+}
+.main__prompt {
+  z-index: 1;
+  color: #f6f5f5;
+  font-family: "MoviePoster";
+  font-size: 10vw;
+}
+@media screen and (min-width: 768px) {
+  .main__prompt {
+    font-size: 4rem;
+  }
+}/*# sourceMappingURL=Main.css.map */

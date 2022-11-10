@@ -1,0 +1,26 @@
+.test {
+  display:flex;
+  background-color: #e2e2e2;
+  font-size: .7rem;
+    width:100%;
+    z-index:100;
+
+    &__button {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      border: 1px solid #676767;
+      border-radius: 5px;
+      background-color: #c6ebbf;
+      font-size: .7rem;
+      height: 2rem;
+    }
+
+  max-width: 100%;
+
+  &--hide {
+    background-color: black;
+    font-size: .7rem;
+    color: #676767;
+  }
+    
+}

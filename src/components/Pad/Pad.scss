@@ -1,0 +1,317 @@
+@use "../../styles/partials/colors" as color;
+@use "../../styles/partials/anims" as anim;
+@use "../../styles/partials/variables" as var;
+@use "../../styles/partials/media" as med;
+
+.pad {
+  
+  background-color: color.$abc-light;
+  border: 2px solid color.$abc-brown;
+  border-radius: 10px;
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: color.$abc-black;
+
+  &--vertical {
+    width: 18vw;
+    height: 22vw;
+    max-width: 75px;
+    max-height: 90px;
+    border-top: 5px solid color.$abc-brown;
+    border-bottom: 5px solid color.$abc-brown;
+    border-right: 5px solid color.$abc-nuanced;
+    border-left: 5px solid color.$abc-nuanced;
+  }
+
+  &--horizontal {
+    width: 22vw;
+    height: 18vw;
+    max-height: 75px;
+    max-width: 90px;
+    border-top: 5px solid color.$abc-nuanced;
+    border-bottom: 5px solid color.$abc-nuanced;
+    border-left: 5px solid color.$abc-brown;
+    border-right: 5px solid color.$abc-brown;
+  }
+
+  &--fadein {
+    animation-name: fade-in;
+    animation-duration: 5s;
+  }
+
+  &--hit {
+    animation-name: hit;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+  }
+
+  &--rest {
+    opacity: 100%;
+  }
+}
+
+.pad1 {
+  top: 1vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(12deg);
+
+  &--orthodox {
+    top: 1vw;
+    left: calc(50% + 1vw);
+    transform: perspective(100px) rotateY(-12deg);
+
+    @include med.pad-break {
+      top: 4px;
+      left: calc(50% + 7px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 4px;
+    left: calc(50% - 80px)
+  }
+}
+
+.pad2 {
+  top: 1vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-12deg);
+
+  &--orthodox {
+    top: 1vw;
+    left: calc(50% - 19vw);
+    transform: perspective(100px) rotateY(12deg);
+
+    @include med.pad-break {
+      top: 4px;
+      left: calc(50% - 80px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 4px;
+    left: calc(50% + 7px)
+  }
+}
+
+.pad3 {
+  top: 10vw;
+  left: 5vw;
+  transform: perspective(100px) rotateY(50deg);
+
+  &--orthodox {
+    top: 10vw;
+    left: calc(100% - 27vw);
+    transform: perspective(100px) rotateY(-50deg);
+
+    @include med.pad-break {
+      top: 35px;
+      left: calc(100% - 108px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 35px;
+    left: 20px;
+  }
+}
+
+.pad4 {
+  top: 10vw;
+  left: calc(100% - 27vw);
+  transform: perspective(100px) rotateY(-50deg);
+
+  &--orthodox {
+    top: 10vw;
+    left: 5vw;
+    transform: perspective(100px) rotateY(50deg);
+
+    @include med.pad-break {
+      top: 35px;
+      left: 20px;
+    }
+  }
+
+  @include med.pad-break {
+    top: 35px;
+    left: calc(100% - 108px)
+  }
+}
+
+.pad5 {
+  top: 27vw;
+  left: calc(50% - 23vw);
+  transform: perspective(100px) rotateX(-50deg);
+
+  &--orthodox {
+    top: 27vw;
+    left: calc(50% + 5vw);
+    transform: perspective(100px) rotateX(-50deg);
+    @include med.pad-break {
+      top: 108px;
+      left: calc(50% + 20px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 108px;
+    left: calc(50% - 90px)
+  }
+}
+
+.pad6 {
+  top: 27vw;
+  left: calc(50% + 5vw);
+  transform: perspective(100px) rotateX(-50deg);
+
+  &--orthodox {
+    top: 27vw;
+    left: calc(50% - 23vw);
+    transform: perspective(100px) rotateX(-50deg);
+
+    @include med.pad-break {
+      top: 108px;
+      left: calc(50% - 90px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 108px;
+    left: calc(50% + 20px)
+  }
+}
+
+.pad7 {
+  top: 60vw;
+  left: calc(50% - 19vw);
+  transform: perspective(100px) rotateY(15deg) rotateX(10deg);
+
+  &--orthodox {
+    top: 60vw;
+    left: calc(50% + 1vw);
+    transform: perspective(100px) rotateY(-15deg) rotateX(10deg);
+
+    @include med.pad-break {
+      top: 240px;
+      left: calc(50% + 8px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 240px;
+    left: calc(50% - 80px)
+  }
+}
+
+.pad8 {
+  top: 60vw;
+  left: calc(50% + 1vw);
+  transform: perspective(100px) rotateY(-15deg) rotateX(10deg);
+
+  &--orthodox {
+    top: 60vw;
+    left: calc(50% - 19vw);
+    transform: perspective(100px) rotateY(15deg) rotateX(10deg);
+
+    @include med.pad-break {
+      top: 240px;
+      left: calc(50% - 80px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 240px;
+    left: calc(50% + 8px)
+  }
+}
+
+.pad9 {
+  top: 70vw;
+  left: calc(100% - 22vw);
+  transform: perspective(100px) rotateY(50deg);
+
+  &--orthodox {
+    top: 70vw;
+    left: 0vw;
+    transform: perspective(100px) rotateY(-50deg);
+
+    @include med.pad-break {
+      top: 280px;
+      left: 0px;
+    }
+  }
+
+  @include med.pad-break {
+    top: 280px;
+    left: calc(100% - 88px)
+  }
+}
+
+.pad10 {
+  top: 70vw;
+  left: 0vw;
+  transform: perspective(100px) rotateY(-50deg);
+
+  &--orthodox {
+    top: 70vw;
+    left: calc(100% - 22vw);
+    transform: perspective(100px) rotateY(50deg);
+
+    @include med.pad-break {
+      top: 280px;
+      left: calc(100% - 88px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 280px;
+    left: 0px;
+  }
+}
+
+.pad11 {
+  top: 90vw;
+  left: calc(50% + 7vw);
+  transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+
+  &--orthodox {
+    top: 90vw;
+    left: calc(50% - 25vw);
+    transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+
+    @include med.pad-break {
+      top: 364px;
+      left: calc(50% - 102px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 364px;
+    left: calc(50% + 30px)
+  }
+}
+
+.pad12 {
+  top: 90vw;
+  left: calc(50% - 25vw);
+  transform: perspective(100px) rotate(40deg) rotateX(-50deg);
+
+  &--orthodox {
+    top: 90vw;
+    left: calc(50% + 7vw);
+    transform: perspective(100px) rotate(-40deg) rotateX(-50deg);
+
+    @include med.pad-break {
+      top: 364px;
+      left: calc(50% + 30px)
+    }
+  }
+
+  @include med.pad-break {
+    top: 364px;
+    left: calc(50% - 102px)
+  }
+}

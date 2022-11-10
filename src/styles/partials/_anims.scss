@@ -1,0 +1,110 @@
+@use "./colors" as color;
+@use "./media" as med;
+
+@keyframes hamburger-appear {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+
+//Action Slider
+@keyframes slide-right {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+
+@keyframes slide-left {
+  from {
+
+    margin-left: 320px;
+    
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+
+@keyframes slide-left-mobile {
+  from {
+
+    margin-left: 80vw;
+    
+  }
+  to {
+    margin-left: 45%;
+  }
+}
+
+
+// || Action Slider
+
+
+// Pads
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes hit {
+
+  98% {
+    transform: rotate(4deg)
+  }
+  99% {
+    trasnform: rotate(-6deg)
+  }
+  100% {
+    background-color: red;
+    width: 90%;
+    height: 90%;
+  }
+  
+}
+
+// || Pads
+
+//animation that makes a component wiggle. Recommended: 3seconds, 3 times
+@keyframes wiggle {
+  30% {
+    transform: rotate(0deg);
+  }
+  2%, 10%, 18% {
+    transform: rotate(4deg);
+  }
+
+  6%, 14%, 22% {
+    transform: rotate(-4deg);
+  }
+
+}
+
+//spins the end of workout belt
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    width: 10px;
+    z-index: -6;
+    margin-top: -300px;
+  }
+
+  to {
+    transform: rotate(1080deg);
+    width: 350px;
+    z-index: 2;
+    margin-top: 30px;
+  }
+}
