@@ -1,0 +1,86 @@
+@use "../../styles/partials/colors" as color;
+@use "../../styles/partials/media" as med;
+
+.achievement {
+  border: 2px solid color.$abc-light;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 3vw;
+
+  display: flex;
+  flex-wrap: wrap;
+  
+
+  @include med.tablet {
+    padding: 10px;
+    padding-left:30px;
+    align-items: center;
+  }
+
+  //bronze tier
+  &__1 {
+    background-color: color.$abc-bronze;
+  }
+
+  //silver tier
+  &__2 {
+    background-color: color.$abc-silver;
+  }
+
+  //gold tier
+  &__3 {
+    background-color: color.$abc-gold;
+  }
+
+  //platinum tier
+  &__4 {
+    background-color: color.$abc-platinum;
+  }
+
+  &__image {
+    width: 8vw;
+    margin-right: 5vw;
+    transform: rotate(40deg) scaleX(-1);
+    opacity: 25%;
+
+    @include med.tablet {
+      width: 30px;
+      margin-right: 35px;
+    }
+
+    //bronze tier
+    &--1 {
+      filter: sepia(100%) hue-rotate(-15deg) brightness(80%) saturate(120%);
+      opacity: 100%;
+    }
+
+    //silver tier
+    &--2 {
+      filter: sepia(0%) hue-rotate(50deg) brightness(100%) saturate(420%);
+      opacity: 100%;
+    }
+
+    //gold tier
+    &--3 {
+      filter: sepia(100%) hue-rotate(15deg) brightness(100%) saturate(420%);
+      opacity: 100%;
+    }
+
+    //platinum tier
+    &--4 {
+      filter: sepia(0%) hue-rotate(50deg) brightness(200%) saturate(420%);
+      opacity: 100%;
+    }
+    
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: color.$abc-redpad;
+
+    @include med.tablet {
+      margin-right: 30px;
+    }
+  }
+}

@@ -1,10 +1,21 @@
 @use "../../styles/partials/media" as med;
+@use "../../styles/partials/colors" as color;
 
 .slider {
   position: relative;
   top: 47vw;
 
   height: 30px;
+
+  &__target {
+    z-index: -1;
+    position: absolute;
+  background-color: color.$abc-light;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  left: 46%;
+  }
 
   @include med.pad-break {
     top: 200px;

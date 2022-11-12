@@ -18,11 +18,7 @@ export default function MainHeader() {
     
     <header className="header_menu">
 
-      
-      {/*
-      Commenting out Test Suite for submission
-      
-       <TestSuite /> */}
+       <TestSuite />
       <HamburgerMenu setShowHamburger={setShowHamburger} handleClickHamburger={handleClickHamburger} showHamburger={showHamburger} />
       <nav className="header_menu__nav">
 

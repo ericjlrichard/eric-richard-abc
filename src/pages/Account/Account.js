@@ -17,6 +17,15 @@ export default function Account()  {
   const [loggedIn, setLoggedIn] = useState(false);
   const [signedUp, setSignedUp] = useState(false);
 
+  useEffect(() => {
+    const sessionToken = sessionStorage.getItem("abc_token")
+
+    if (sessionToken) {
+      setLoggedIn(true)
+      setSignedUp(true)
+    }
+  }, [])
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
@@ -53,7 +62,6 @@ export default function Account()  {
 
       signUp()
 
-      //window.alert("Successful sign up")
 
     } else {
       //if validation was not OK, tell the user what's up

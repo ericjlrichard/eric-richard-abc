@@ -208,7 +208,6 @@ export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
                 {boxers.map((item) => (
                   <div key={item.id}>
                     <input
-                      title="hello?"
                       className="modal__check-boxers"
                       type="checkbox"
                       defaultChecked={userSettings.combos.find(haystack => { return Number(haystack) === item.id })}
@@ -216,10 +215,8 @@ export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
                       id={`checkBoxers${item.id}`}
                       value={item.id}
                     ></input><span title={item.description}>{" "}
-                    {item.first_name +
-                      " '" +
-                      item.nickname +
-                      "' " +
+                    {item.first_name + (item.nickname ? " '" + item.nickname + "' " : " ") +
+                      
                       item.last_name}</span>
                   </div>
                 ))}

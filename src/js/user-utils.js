@@ -1,4 +1,6 @@
 
+
+
 const cryptoJS = require("crypto-js")
 const secret = process.env.REACT_APP_SECRET_KEY;
 
@@ -51,4 +53,71 @@ exports.verifySignUpForm = (signUpForm) => {
   }
   
   return "OK";
+}
+
+
+//copied straight from math-utils and I'm not even sorry.
+ function getRandom (array) {
+  return !!array && array[Math.floor(Math.random() * array.length)]
+}
+
+ function getRandomPercentage() {
+  return Math.floor(Math.random()*101)
+}
+
+exports.generateRandomHandle = () => {
+  const names= ["Steve", "Harry", "Mandy", "Theresa", "Ginette", "Bob", "Fernand", "Alan", "Vernon", "Yan"];
+  const adjectives = ["Righteous",
+  "Swift",
+  "Slim",
+  "Wild",
+  "Moldy",
+  "Chief",
+  "Pretty",
+  "Royal",
+  "Preppy",
+  "Rebel" ];
+  const nouns = ["Destroyer", "Hammer", "Cheetah", "Snake", "Monster", "Power", "Fist", "Hunk", "Anvil", "Flash"]
+
+  //half the time returns adjective+name, the other half name + "the" + noun
+  if (getRandomPercentage() >=50) {
+    return getRandom(adjectives) + getRandom(names)
+  } else {
+    return getRandom(names) + "The" + getRandom(nouns)
+  }
+
+}
+
+
+//achievements utils
+
+exports.returnAchievementDescription = (achievementObj, userStats) => {
+  const tier = this.determineNextTier(achievementObj, userStats)
+
+  if (tier === 4) {
+    return "Achievement completed! " + achievementObj.description.replace("%next-tier%", achievementObj.tiers[3])
+  }
+  
+  return achievementObj.description.replace("%next-tier%", achievementObj.tiers[tier])
+}
+
+exports.determineNextTier = (achievementObj, userStats) => {
+  
+  const achievementVariables = achievementObj.variables;
+  const achievementTiers = achievementObj.tiers;
+  let tierIndex = 0;
+
+  const resultsArray = []
+
+  achievementVariables.forEach(achievementVar => {
+
+    let i = 0
+
+    while((i < achievementTiers.length) && (Number(userStats[achievementVar]) >= Number(achievementTiers[i]))) {
+      i++;
+    }
+    resultsArray.push(i)
+  })
+
+  return Math.min(...resultsArray)
 }

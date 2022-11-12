@@ -1,13 +1,23 @@
+import "./Profile.scss";
+import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from "react"
 import axios from "axios"
+
+import Achievement from "../Achievement/Achievement";
+import Stats from "../Stats/Stats";
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState(undefined)
+  const [achievements, setAchievements] = useState(undefined)
+
+  const navigate = useNavigate();
   
 
   useEffect(() => {
+  
     const abcToken = sessionStorage.getItem("abc_token")
 
     axios.get(`${API_URL}/profile`, {
@@ -16,7 +26,29 @@ export default function Profile() {
       }
     })
     .then(res => {
-      setUserInfo(res.data)
+      const userInfoTemp = res.data;
+
+      //mockup data for achievements testing
+      userInfoTemp.workout_minutes = (52*30);
+      userInfoTemp.workouts = 54;
+      userInfoTemp.southpaw_workouts = 50;
+      userInfoTemp.orthodox_workouts = 4;
+      userInfoTemp.classic_rounds = 26;
+      userInfoTemp.random_rounds = 0;
+      userInfoTemp.signature_rounds = 3;
+      userInfoTemp.classic_workouts = 0;
+      userInfoTemp.random_workouts = 0;
+      userInfoTemp.signature_workouts = 5;
+
+      setUserInfo(userInfoTemp)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+    axios.get(`${API_URL}/achievements`)
+    .then(res => {
+      setAchievements(res.data)
     })
     .catch(err => {
       console.log(err)
@@ -24,9 +56,40 @@ export default function Profile() {
      
   }, [])
 
-  return !!userInfo && (
+  const handleClickLogout = (event) => {
+
+    //message modal asking if user is sure
+
+    sessionStorage.removeItem("abc_token")
+    navigate("/")
+  }
+
+  return !!userInfo && !!achievements && (
     <div>
-      <h1>{userInfo.handle} - Profile</h1>
+      <div className="profile__title">
+      <h1 className="profile__handle">{userInfo.handle}</h1>
+      <div className="profile__logout" onClick={handleClickLogout}>Logout</div>
+      </div>
+      
+
+      <details>
+        <summary className="profile__section-title">Settings</summary>
+      </details>
+
+      <details>
+        <summary className="profile__section-title">Stats</summary>
+        <Stats userInfo={userInfo} />
+      </details>
+
+      <details open>
+        <summary className="profile__section-title">Achievements</summary>
+        
+      {
+        achievements.map(item => (
+          <Achievement key={item.id} achievement={item} userInfo={userInfo} />
+        ))
+      }
+      </details>
     </div>
   )
 }

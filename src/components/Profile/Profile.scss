@@ -1,0 +1,34 @@
+@use "../../styles/partials/colors" as color;
+@use "../../styles/partials/media" as med;
+
+.profile {
+
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__section-title {
+    font-size: 1.5rem;
+    margin-bottom: 3vw;
+
+    @include med.tablet {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__handle {
+    //margin-bottom: 0px;
+  }
+  &__logout {
+    margin-left: 5vw;
+    font-size: .8rem;
+    color: color.$abc-redpad;
+
+    &:hover {
+      color: color.$abc-red;
+      cursor: pointer;
+    }
+  }
+}

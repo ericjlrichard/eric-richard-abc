@@ -1,0 +1,9 @@
+@use "../../styles/partials/media" as med;
+
+
+.stats {
+  
+  @include med.tablet {
+    margin-left: 30px;
+  }
+}

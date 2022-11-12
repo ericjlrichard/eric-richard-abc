@@ -2,6 +2,7 @@ import "./TestSuite.scss"
 
 import {checkRandomizer, getRandom, getRandomFromRange, getSkewedRandom, getSkewedFromArrays} from "../../js/math-utils.js";
 import { useState } from "react";
+import { generateRandomHandle } from "../../js/user-utils";
 
 import { createRandomCombo } from "../../js/combo-utils";
 
@@ -93,10 +94,11 @@ export default function TestSuite() {
     const signupForm = document.getElementById("signup-form");
 
     if (signupForm) {
-      signupForm.handle.value = "SteveTheHammer"
-      signupForm.email.value = "steve@thehammer.com"
-      signupForm.password.value = "SteveTheHammer"
-      signupForm["confirm-password"].value = "SteveTheHammer"
+      const randomHandle = generateRandomHandle()
+      signupForm.handle.value = randomHandle
+      signupForm.email.value = randomHandle + "@angeloboxingcoach.com"
+      signupForm.password.value = randomHandle
+      signupForm["confirm-password"].value = randomHandle
     }
   }
 
@@ -104,6 +106,10 @@ export default function TestSuite() {
     return (
       <div className="test--hide" onClick={handleClickShow}>Show</div>
     )
+  }
+
+  const handleClickDeleteSessionToken = (event) => {
+    sessionStorage.removeItem("abc_token")
   }
 
   return (
@@ -118,6 +124,8 @@ export default function TestSuite() {
         <option value={`${API_URL}/actions`} >GET all actions with types</option>
       </select>
       <button className="test__button" onClick={handleClickAutoFill}>Autofill</button>
+
+      <button className="test__button" onClick={handleClickDeleteSessionToken}>Del Sesh Token</button>
 
       <button className="test__button" onClick={handleClickRandom}>Maths Check</button>
 

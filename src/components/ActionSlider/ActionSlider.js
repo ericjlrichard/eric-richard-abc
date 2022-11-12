@@ -75,6 +75,9 @@ export default function ActionSlider({round, userSettings}) {
       <BoxAction  side="lead" state={l3} />
       <BoxAction  side="lead" state={l4} />
 
+      {/* Not ready yet so commenting it out for submission, but there could be a small target in the center. */}
+      {/* <div className="slider__target"></div> */}
+
       <BoxAction action="R1" side="rear" state={r1}/>
       <BoxAction action="R2" side="rear" state={r2}/>
       <BoxAction action="R3" side="rear" state={r3} />
