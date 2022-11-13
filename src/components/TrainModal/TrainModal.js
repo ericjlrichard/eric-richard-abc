@@ -178,7 +178,7 @@ export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
                   value="all"
                   type="radio"
                   id="allCombos"
-                  defaultChecked={userSettings.combosAll === "all"}
+                  defaultChecked={userSettings.combosAll === "all" || !userSettings.combosAll}
                   onChange={handleComboChange}
                 ></input>
                 <label htmlFor="allCombos">all</label><br></br>
@@ -187,7 +187,7 @@ export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
                   value="some"
                   type="radio"
                   id="someCombos"
-                  defaultChecked={userSettings.combosAll !== "all"}
+                  defaultChecked={userSettings.combosAll === "some"}
                   onChange={handleComboChange}
                 ></input>
                 <label htmlFor="someCombos">some</label>
@@ -210,7 +210,7 @@ export default function TrainModal({ showTrainModal, clickClose, clickTrain }) {
                     <input
                       className="modal__check-boxers"
                       type="checkbox"
-                      defaultChecked={userSettings.combos.find(haystack => { return Number(haystack) === item.id })}
+                      defaultChecked={ userSettings.combos.find(haystack => { return Number(haystack) === item.id })}
                       disabled={userSettings.combosAll === "all"}
                       id={`checkBoxers${item.id}`}
                       value={item.id}

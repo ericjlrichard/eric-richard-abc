@@ -95,17 +95,16 @@ exports.returnAchievementDescription = (achievementObj, userStats) => {
   const tier = this.determineNextTier(achievementObj, userStats)
 
   if (tier === 4) {
-    return "Achievement completed! " + achievementObj.description.replace("%next-tier%", achievementObj.tiers[3])
+    return "Platinum achievement completed! " + achievementObj.description.replace("%next-tier%", achievementObj.tiers[3])
   }
-  
-  return achievementObj.description.replace("%next-tier%", achievementObj.tiers[tier])
+
+  return "Next tier: " + achievementObj.description.replace("%next-tier%", achievementObj.tiers[tier])
 }
 
 exports.determineNextTier = (achievementObj, userStats) => {
   
   const achievementVariables = achievementObj.variables;
   const achievementTiers = achievementObj.tiers;
-  let tierIndex = 0;
 
   const resultsArray = []
 

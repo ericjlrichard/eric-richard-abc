@@ -6,6 +6,7 @@ import axios from "axios"
 
 import Achievement from "../Achievement/Achievement";
 import Stats from "../Stats/Stats";
+import Settings from "../Settings/Settings";
 
 const API_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -74,6 +75,7 @@ export default function Profile() {
 
       <details>
         <summary className="profile__section-title">Settings</summary>
+        <Settings />
       </details>
 
       <details>
