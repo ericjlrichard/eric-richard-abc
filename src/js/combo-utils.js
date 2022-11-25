@@ -132,7 +132,7 @@ export function createRandomRound(combosArray, type = "regular", duration = defa
     //TD This should be a function...
     returnObj.round.push(...padComboIncrements(nextComboArray, 4))
     padSeconds(returnObj.round, 4)
-    returnObj.round.push(...padComboIncrements(nextComboArray, 4))
+    returnObj.round.push(...padComboIncrements(nextComboArray, 3))
     padSeconds(returnObj.round, 4)
     returnObj.round.push(...padComboIncrements(nextComboArray, 2))
     padSeconds(returnObj.round, 4)

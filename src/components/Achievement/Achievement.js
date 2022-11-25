@@ -1,5 +1,5 @@
 import "./Achievement.scss";
-import { returnAchievementDescription, determineNextTier } from "../../js/user-utils"
+import { returnAchievementDescription, determineNextTier } from "../../js/achievements-utils"
 
 const tierNames = ["none", "bronze", "silver", "gold", "platinum"]
 

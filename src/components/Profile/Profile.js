@@ -20,6 +20,7 @@ export default function Profile() {
   useEffect(() => {
   
     const abcToken = sessionStorage.getItem("abc_token")
+    console.log(abcToken)
 
     axios.get(`${API_URL}/profile`, {
       headers: {
@@ -27,21 +28,23 @@ export default function Profile() {
       }
     })
     .then(res => {
-      const userInfoTemp = res.data;
+      console.log(res.data)
+      // const userInfoTemp = res.data;
 
-      //mockup data for achievements testing
-      userInfoTemp.workout_minutes = (52*30);
-      userInfoTemp.workouts = 54;
-      userInfoTemp.southpaw_workouts = 50;
-      userInfoTemp.orthodox_workouts = 4;
-      userInfoTemp.classic_rounds = 26;
-      userInfoTemp.random_rounds = 0;
-      userInfoTemp.signature_rounds = 3;
-      userInfoTemp.classic_workouts = 0;
-      userInfoTemp.random_workouts = 0;
-      userInfoTemp.signature_workouts = 5;
+      // //mockup data for achievements testing
+      // userInfoTemp.workout_minutes = (52*30);
+      // userInfoTemp.workouts = 54;
+      // userInfoTemp.southpaw_workouts = 50;
+      // userInfoTemp.orthodox_workouts = 4;
+      // userInfoTemp.classic_rounds = 26;
+      // userInfoTemp.random_rounds = 0;
+      // userInfoTemp.signature_rounds = 3;
+      // userInfoTemp.classic_workouts = 0;
+      // userInfoTemp.random_workouts = 0;
+      // userInfoTemp.signature_workouts = 5;
 
-      setUserInfo(userInfoTemp)
+      // setUserInfo(userInfoTemp)
+      setUserInfo(res.data)
     })
     .catch(err => {
       console.log(err)

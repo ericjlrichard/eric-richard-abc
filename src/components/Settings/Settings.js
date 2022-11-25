@@ -1,12 +1,19 @@
-
-
+import { useState, useEffect } from "react"
+import { getSessionSettings } from "../../js/user-utils"
 
 export default function Settings() {
+  const [userSettings, setUserSettings] = useState(undefined)
 
+  useEffect(() => {
+    let userSettingsTemp = getSessionSettings();
 
-  return (
+    setUserSettings(userSettingsTemp)
+    console.log(userSettingsTemp)
+  }, [])
+
+  return !!userSettings && (
     <div>
-      Here be settings my brother.
+      Here be settings my brother
     </div>
   )
 }

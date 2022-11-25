@@ -132,6 +132,11 @@ export default function NewTrain() {
     );
   }
 
+  if (!!workout && !!combosArray) {
+    console.log(userUtils.determineStats(workout, combosArrayFiltered, userUtils.getSessionSettings()))
+  }
+  
+
   //swinging the workout to the PadBox, it's their problem now.
   return (
     !!workout && (
